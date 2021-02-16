@@ -21,5 +21,9 @@ namespace SOLOS_Group_Capstone.Models
         [ForeignKey("EmployerId")]
         public int EmpId { get; set; }
         public Employer EmployerId { get; set; }
+
+        [ForeignKey("DeveloperId")]
+        public int? DevId { get; set; }
+        public Developer? DeveloperId { get; set; }
     }
 }
