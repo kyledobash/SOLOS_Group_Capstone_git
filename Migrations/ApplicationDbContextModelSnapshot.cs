@@ -3,26 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-<<<<<<< HEAD
-using Microsoft.EntityFrameworkCore.Migrations;
-=======
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SOLOS_Group_Capstone.Data;
 
 namespace SOLOS_Group_Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD
-    [Migration("20210217184813_AddedSeedEmployers")]
-    partial class AddedSeedEmployers
-    {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-=======
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,35 +48,15 @@ namespace SOLOS_Group_Capstone.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD
-<<<<<<< HEAD:Migrations/ApplicationDbContextModelSnapshot.cs
-                            Id = "3a60d24a-a664-400c-b841-ce506e2a1c1d",
-                            ConcurrencyStamp = "0f827040-ca60-4ed6-99ad-91f16aacd451",
-=======
-                            Id = "00d5ab82-1975-45a5-9833-88a3e1176f83",
-                            ConcurrencyStamp = "f4299173-69fa-487c-be2b-5eda71883994",
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b:Migrations/20210217184813_AddedSeedEmployers.Designer.cs
-=======
-                            Id = "6722f6b4-2260-41fb-9d38-5b20447d1cbf",
-                            ConcurrencyStamp = "0b24042f-4033-4db0-bcd5-652763c6330a",
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
+                            Id = "5e53da22-13b7-4c75-822b-f3aa717e47da",
+                            ConcurrencyStamp = "80751a4b-d86a-4037-a651-9a1a19de8c18",
                             Name = "Developer",
                             NormalizedName = "DEVELOPER"
                         },
                         new
                         {
-<<<<<<< HEAD
-<<<<<<< HEAD:Migrations/ApplicationDbContextModelSnapshot.cs
-                            Id = "a5af8901-a231-4125-b38f-829625791fbe",
-                            ConcurrencyStamp = "e62c1495-4e71-4312-98d3-a81a9786dd30",
-=======
-                            Id = "ab9e86a5-c935-42f0-8a15-061f476f56ab",
-                            ConcurrencyStamp = "b71110e0-c662-408e-93e0-046d9822cc0d",
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b:Migrations/20210217184813_AddedSeedEmployers.Designer.cs
-=======
-                            Id = "3c3185a0-dc08-451a-a492-bb3818469746",
-                            ConcurrencyStamp = "d3f21850-8317-49de-8fc2-a6a2348ce6a1",
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
+                            Id = "1c16faaa-2d61-4abc-ab98-98149910dcde",
+                            ConcurrencyStamp = "9e222da0-703d-4737-a23e-9b27076874b5",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         });
@@ -281,6 +250,9 @@ namespace SOLOS_Group_Capstone.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("JobCastId")
                         .HasColumnType("int");
 
@@ -290,13 +262,15 @@ namespace SOLOS_Group_Capstone.Migrations
                     b.Property<int>("Pending_applications")
                         .HasColumnType("int");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<double>("PhoneNumber")
+                        .HasColumnType("float");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("Developer");
                 });
@@ -323,13 +297,8 @@ namespace SOLOS_Group_Capstone.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
-=======
                     b.Property<double>("PhoneNumber")
                         .HasColumnType("float");
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -339,8 +308,6 @@ namespace SOLOS_Group_Capstone.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Employer");
-<<<<<<< HEAD
-=======
 
                     b.HasData(
                         new
@@ -353,7 +320,95 @@ namespace SOLOS_Group_Capstone.Migrations
                             PhoneNumber = 6029994298.0,
                             State = "AZ"
                         });
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.EmployerDeveloper", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DeveloperId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeveloperId");
+
+                    b.HasIndex("EmployerId");
+
+                    b.ToTable("EmployerDevelopers");
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Jobs", b =>
+                {
+                    b.Property<int>("JobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descriptions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DevId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Requirements")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobId");
+
+                    b.HasIndex("DevId");
+
+                    b.HasIndex("EmployerId");
+
+                    b.ToTable("Jobs");
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Resume", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Dev_specialty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Education_Certificates")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Languages")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Projects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Resume_Copy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Web_Portfolio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Resumes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -407,11 +462,46 @@ namespace SOLOS_Group_Capstone.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Developer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
             modelBuilder.Entity("SOLOS_Group_Capstone.Models.Employer", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.EmployerDeveloper", b =>
+                {
+                    b.HasOne("SOLOS_Group_Capstone.Models.Developer", "Developers")
+                        .WithMany()
+                        .HasForeignKey("DeveloperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SOLOS_Group_Capstone.Models.Employer", "Employers")
+                        .WithMany()
+                        .HasForeignKey("EmployerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Jobs", b =>
+                {
+                    b.HasOne("SOLOS_Group_Capstone.Models.Developer", "Developer")
+                        .WithMany()
+                        .HasForeignKey("DevId");
+
+                    b.HasOne("SOLOS_Group_Capstone.Models.Employer", "Employer")
+                        .WithMany()
+                        .HasForeignKey("EmployerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

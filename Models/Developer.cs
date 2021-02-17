@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,8 @@ namespace SOLOS_Group_Capstone.Models
         [ForeignKey("JobCast")] //double check that this matches with jobcast junction
         public int JobCastId { get; set; } // get first value as key for jobcastId . then be able to access applicationdbcontext through LINQ . notation.
 
-              
+        [ForeignKey("IdentityUser")]
+        public string IdentityUserId { get; set; }
+        public IdentityUser IdentityUser { get; set; }
     }
 }

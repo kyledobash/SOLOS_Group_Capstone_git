@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,9 +21,18 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Developer.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var developer = _context.Developer.Where(c => c.IdentityUserId ==
+            userId).SingleOrDefault();
+            if (developer == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+            // customer = _context.Customer.Include(m => m.Day);
+            return View(developer);
+
         }
 
         // GET: Developers/Details/5
@@ -54,15 +64,20 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
+        public ActionResult Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
         {
-            if (ModelState.IsValid)
+            try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                developer.IdentityUserId = userId;
                 _context.Add(developer);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(developer);
+            catch
+            {
+                return View(developer);
+            }
         }
 
         // GET: Developers/Edit/5
@@ -86,34 +101,28 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
+        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
         {
-            if (id != developer.Id)
+            try
             {
-                return NotFound();
-            }
+                var developerInDB = _context.Developer.Single(m => m.Id == developer.Id);
+                developerInDB.FirstName = developer.FirstName;
+                developerInDB.LastName = developer.LastName;
+                developerInDB.Email = developer.Email;
+                developerInDB.City = developer.City;
+                developerInDB.State = developer.State;
+                developerInDB.BookMarkedJobListing = developer.BookMarkedJobListing;
+                developerInDB.Pending_applications = developer.Pending_applications;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(developer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DeveloperExists(developer.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Developer");
+                //return RedirectToAction(nameof(Index));
             }
-            return View(developer);
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Developers/Delete/5

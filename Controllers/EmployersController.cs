@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,10 +21,17 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Employer.Include(e => e.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employer = _context.Developer.Where(c => c.IdentityUserId ==
+            userId).SingleOrDefault();
+            if (employer == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+            // customer = _context.Customer.Include(m => m.Day);
+            return View(employer);
         }
 
         // GET: Employers/Details/5
@@ -57,16 +65,20 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpId,FirstName,LastName,Email,PhoneNumber,City,State,IdentityUserId")] Employer employer)
+        public IActionResult Create([Bind("EmpId,FirstName,LastName,Email,PhoneNumber,City,State,IdentityUserId")] Employer employer)
         {
-            if (ModelState.IsValid)
+            try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employer.IdentityUserId = userId;
                 _context.Add(employer);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
-            return View(employer);
+            catch
+            {
+                return View(employer);
+            }
         }
 
         // GET: Employers/Edit/5
@@ -93,33 +105,24 @@ namespace SOLOS_Group_Capstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EmpId,FirstName,LastName,Email,PhoneNumber,City,State,IdentityUserId")] Employer employer)
         {
-            if (id != employer.EmpId)
+            try
             {
-                return NotFound();
-            }
+                var employerInDB = _context.Developer.Single(m => m.Id == employer.EmpId);
+                employerInDB.FirstName = employer.FirstName;
+                employerInDB.LastName = employer.LastName;
+                employerInDB.Email = employer.Email;
+                employerInDB.City = employer.City;
+                employerInDB.State = employer.State;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(employer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmployerExists(employer.EmpId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Developer");
+                //return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
-            return View(employer);
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Employers/Delete/5

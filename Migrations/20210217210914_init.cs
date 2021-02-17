@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SOLOS_Group_Capstone.Migrations
 {
-<<<<<<< HEAD:Migrations/20210217164517_AddedModelsAndJobCast.cs
-    public partial class AddedModelsAndJobCast : Migration
-=======
-    public partial class FreshDatabase : Migration
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b:Migrations/20210217183942_FreshDatabase.cs
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,24 +47,21 @@ namespace SOLOS_Group_Capstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Developer",
+                name: "Resumes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<int>(nullable: false),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    BookMarkedJobListing = table.Column<double>(nullable: false),
-                    Pending_applications = table.Column<int>(nullable: false),
-                    JobCastId = table.Column<int>(nullable: false)
+                    Dev_specialty = table.Column<string>(nullable: true),
+                    Languages = table.Column<string>(nullable: true),
+                    Education_Certificates = table.Column<string>(nullable: true),
+                    Projects = table.Column<string>(nullable: true),
+                    Web_Portfolio = table.Column<string>(nullable: true),
+                    Resume_Copy = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Developer", x => x.Id);
+                    table.PrimaryKey("PK_Resumes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,12 +170,34 @@ namespace SOLOS_Group_Capstone.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-<<<<<<< HEAD:Migrations/20210217164517_AddedModelsAndJobCast.cs
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3a60d24a-a664-400c-b841-ce506e2a1c1d", "0f827040-ca60-4ed6-99ad-91f16aacd451", "Developer", "DEVELOPER" });
-=======
+            migrationBuilder.CreateTable(
+                name: "Developer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<double>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    BookMarkedJobListing = table.Column<double>(nullable: false),
+                    Pending_applications = table.Column<int>(nullable: false),
+                    JobCastId = table.Column<int>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Developer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Developer_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Employer",
                 columns: table => new
@@ -192,7 +207,7 @@ namespace SOLOS_Group_Capstone.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<int>(nullable: false),
+                    PhoneNumber = table.Column<double>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
@@ -208,20 +223,77 @@ namespace SOLOS_Group_Capstone.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "84ad108e-eed7-4560-b12a-08416fa65461", "823fab59-9c23-4599-ac83-4d0f7975fe02", "Developer", "DEVELOPER" });
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b:Migrations/20210217183942_FreshDatabase.cs
+            migrationBuilder.CreateTable(
+                name: "EmployerDevelopers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployerId = table.Column<int>(nullable: false),
+                    DeveloperId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployerDevelopers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployerDevelopers_Developer_DeveloperId",
+                        column: x => x.DeveloperId,
+                        principalTable: "Developer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployerDevelopers_Employer_EmployerId",
+                        column: x => x.EmployerId,
+                        principalTable: "Employer",
+                        principalColumn: "EmpId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Jobs",
+                columns: table => new
+                {
+                    JobId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Requirements = table.Column<string>(nullable: true),
+                    Descriptions = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    EmployerId = table.Column<int>(nullable: false),
+                    DevId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Jobs", x => x.JobId);
+                    table.ForeignKey(
+                        name: "FK_Jobs_Developer_DevId",
+                        column: x => x.DevId,
+                        principalTable: "Developer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Jobs_Employer_EmployerId",
+                        column: x => x.EmployerId,
+                        principalTable: "Employer",
+                        principalColumn: "EmpId",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-<<<<<<< HEAD:Migrations/20210217164517_AddedModelsAndJobCast.cs
-                values: new object[] { "a5af8901-a231-4125-b38f-829625791fbe", "e62c1495-4e71-4312-98d3-a81a9786dd30", "Employer", "EMPLOYER" });
-=======
-                values: new object[] { "a69542ae-0403-468c-a3b1-07d324a46e21", "2e461ef3-e5f2-4507-ad6d-45bd51a2f30c", "Employer", "EMPLOYER" });
->>>>>>> 7a879d8ced3d578ef41a652549eee46f232f646b:Migrations/20210217183942_FreshDatabase.cs
+                values: new object[] { "5e53da22-13b7-4c75-822b-f3aa717e47da", "80751a4b-d86a-4037-a651-9a1a19de8c18", "Developer", "DEVELOPER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1c16faaa-2d61-4abc-ab98-98149910dcde", "9e222da0-703d-4737-a23e-9b27076874b5", "Employer", "EMPLOYER" });
+
+            migrationBuilder.InsertData(
+                table: "Employer",
+                columns: new[] { "EmpId", "City", "Email", "FirstName", "IdentityUserId", "LastName", "PhoneNumber", "State" },
+                values: new object[] { 1, "PHX", "kyledobash@yahoo.com", "Kyle", null, "Dobash", 6029994298.0, "AZ" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -263,9 +335,34 @@ namespace SOLOS_Group_Capstone.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Developer_IdentityUserId",
+                table: "Developer",
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employer_IdentityUserId",
                 table: "Employer",
                 column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployerDevelopers_DeveloperId",
+                table: "EmployerDevelopers",
+                column: "DeveloperId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployerDevelopers_EmployerId",
+                table: "EmployerDevelopers",
+                column: "EmployerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Jobs_DevId",
+                table: "Jobs",
+                column: "DevId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Jobs_EmployerId",
+                table: "Jobs",
+                column: "EmployerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -286,13 +383,22 @@ namespace SOLOS_Group_Capstone.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "EmployerDevelopers");
+
+            migrationBuilder.DropTable(
+                name: "Jobs");
+
+            migrationBuilder.DropTable(
+                name: "Resumes");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
                 name: "Developer");
 
             migrationBuilder.DropTable(
                 name: "Employer");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
