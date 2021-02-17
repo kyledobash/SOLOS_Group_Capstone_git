@@ -18,7 +18,7 @@ namespace SOLOS_Group_Capstone.Models
         [Display(Name = "Email Address")]
         public string Email { get; set; }
         [Display(Name = "Phone Number")]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
         [Display(Name = "City")]
         public string City { get; set; }
         [Display(Name = "State")]
