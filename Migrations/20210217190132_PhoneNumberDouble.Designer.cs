@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SOLOS_Group_Capstone.Data;
 
-namespace SOLOS_Group_Capstone.Data.Migrations
+namespace SOLOS_Group_Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210217190132_PhoneNumberDouble")]
+    partial class PhoneNumberDouble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace SOLOS_Group_Capstone.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7e4b9fed-8ab5-48ab-bdec-119989d45d1b",
-                            ConcurrencyStamp = "c095ee97-648e-4bc1-8bed-cef759ee5406",
+                            Id = "6722f6b4-2260-41fb-9d38-5b20447d1cbf",
+                            ConcurrencyStamp = "0b24042f-4033-4db0-bcd5-652763c6330a",
                             Name = "Developer",
                             NormalizedName = "DEVELOPER"
                         },
                         new
                         {
-                            Id = "5847ac0f-e10a-443f-b771-30c6517510c5",
-                            ConcurrencyStamp = "fdf25a2e-c17b-4f57-b48e-c26e203144cd",
+                            Id = "3c3185a0-dc08-451a-a492-bb3818469746",
+                            ConcurrencyStamp = "d3f21850-8317-49de-8fc2-a6a2348ce6a1",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         });
@@ -231,6 +233,92 @@ namespace SOLOS_Group_Capstone.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Developer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("BookMarkedJobListing")
+                        .HasColumnType("float");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JobCastId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pending_applications")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Developer");
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Employer", b =>
+                {
+                    b.Property<int>("EmpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("PhoneNumber")
+                        .HasColumnType("float");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmpId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Employer");
+
+                    b.HasData(
+                        new
+                        {
+                            EmpId = 1,
+                            City = "PHX",
+                            Email = "kyledobash@yahoo.com",
+                            FirstName = "Kyle",
+                            LastName = "Dobash",
+                            PhoneNumber = 6029994298.0,
+                            State = "AZ"
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -280,6 +368,13 @@ namespace SOLOS_Group_Capstone.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SOLOS_Group_Capstone.Models.Employer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 #pragma warning restore 612, 618
         }

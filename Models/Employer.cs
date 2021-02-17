@@ -23,7 +23,7 @@ namespace SOLOS_Group_Capstone.Models
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
 
         public string City { get; set; }
         public string State { get; set; }
