@@ -36,20 +36,13 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var developer = await _context.Developer
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (developer == null)
-            {
-                return NotFound();
-            }
-
+            var developer = _context.Developer.SingleOrDefault(m => m.Id == id);
             return View(developer);
         }
 
@@ -81,19 +74,19 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var developer = await _context.Developer.FindAsync(id);
-            if (developer == null)
-            {
-                return NotFound();
-            }
-            return View(developer);
+            //var developer = _context.Developer.FindAsync(id);
+            //if (developer == null)
+            //{
+            //    return NotFound();
+            //}
+            return View();
         }
 
         // POST: Developers/Edit/5
@@ -101,7 +94,7 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
+        public IActionResult Edit(Developer developer)
         {
             try
             {
@@ -113,8 +106,6 @@ namespace SOLOS_Group_Capstone.Controllers
                 developerInDB.State = developer.State;
                 developerInDB.BookMarkedJobListing = developer.BookMarkedJobListing;
                 developerInDB.Pending_applications = developer.Pending_applications;
-
-
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Developer");
                 //return RedirectToAction(nameof(Index));
@@ -146,17 +137,27 @@ namespace SOLOS_Group_Capstone.Controllers
         // POST: Developers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        
+        public IActionResult Delete(int id)
         {
-            var developer = await _context.Developer.FindAsync(id);
+            var developer = _context.Developer.SingleOrDefault(m => m.Id == id);
             _context.Developer.Remove(developer);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            _context.SaveChanges();
+            var developers = _context.Developer.ToList();
+            return View("Index", developers);
 
-        private bool DeveloperExists(int id)
-        {
-            return _context.Developer.Any(e => e.Id == id);
+            //public async Task<IActionResult> DeleteConfirmed(int id)
+            //{
+            //    var developer = await _context.Developer.FindAsync(id);
+            //    _context.Developer.Remove(developer);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+
+            //private bool DeveloperExists(int id)
+            //{
+            //    return _context.Developer.Any(e => e.Id == id);
+            //}
         }
     }
 }

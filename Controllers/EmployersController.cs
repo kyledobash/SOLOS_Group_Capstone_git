@@ -35,21 +35,13 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var employer = await _context.Employer
-                .Include(e => e.IdentityUser)
-                .FirstOrDefaultAsync(m => m.EmpId == id);
-            if (employer == null)
-            {
-                return NotFound();
-            }
-
+            var employer = _context.Employer.SingleOrDefault(m => m.EmpId == id);            
             return View(employer);
         }
 
