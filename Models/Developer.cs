@@ -30,5 +30,15 @@ namespace SOLOS_Group_Capstone.Models
 
         [ForeignKey("JobCast")] //double check that this matches with jobcast junction
         public int JobCastId { get; set; } // get first value as key for jobcastId . then be able to access applicationdbcontext through LINQ . notation.
+
+        public Developer()
+        {
+            this.Employers = new HashSet<Employer>();
+            this.Jobs = new HashSet<Jobs>();
+            this.Resumes = new HashSet<Resume>();
+        }
+        public virtual ICollection<Employer> Employers { get; set; }
+        public virtual ICollection<Jobs> Jobs { get; set; }
+        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

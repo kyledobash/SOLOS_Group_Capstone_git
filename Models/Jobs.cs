@@ -18,12 +18,12 @@ namespace SOLOS_Group_Capstone.Models
         public string State { get; set; }
 
 
-        [ForeignKey("EmployerId")]
-        public int EmpId { get; set; }
-        public Employer EmployerId { get; set; }
+        [ForeignKey("Employer")]
+        public int EmployerId { get; set; }
+        public Employer Employer { get; set; }
 
-        [ForeignKey("DeveloperId")]
+        [ForeignKey("Developer")]
         public int? DevId { get; set; }
-        public Developer? DeveloperId { get; set; }
+        public Developer Developer { get; set; }
     }
 }

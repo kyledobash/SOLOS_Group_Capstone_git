@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SOLOS_Group_Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,5 +34,5 @@ namespace SOLOS_Group_Capstone.Data
             }
             );
         }
-    }
+    } 
 }

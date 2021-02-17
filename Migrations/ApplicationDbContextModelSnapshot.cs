@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SOLOS_Group_Capstone.Data;
 
-namespace SOLOS_Group_Capstone.Data.Migrations
+namespace SOLOS_Group_Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210216203034_Initial")]
-    partial class Initial
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,15 +48,15 @@ namespace SOLOS_Group_Capstone.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7e4b9fed-8ab5-48ab-bdec-119989d45d1b",
-                            ConcurrencyStamp = "c095ee97-648e-4bc1-8bed-cef759ee5406",
+                            Id = "3a60d24a-a664-400c-b841-ce506e2a1c1d",
+                            ConcurrencyStamp = "0f827040-ca60-4ed6-99ad-91f16aacd451",
                             Name = "Developer",
                             NormalizedName = "DEVELOPER"
                         },
                         new
                         {
-                            Id = "5847ac0f-e10a-443f-b771-30c6517510c5",
-                            ConcurrencyStamp = "fdf25a2e-c17b-4f57-b48e-c26e203144cd",
+                            Id = "a5af8901-a231-4125-b38f-829625791fbe",
+                            ConcurrencyStamp = "e62c1495-4e71-4312-98d3-a81a9786dd30",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         });

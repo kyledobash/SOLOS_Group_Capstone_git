@@ -32,5 +32,14 @@ namespace SOLOS_Group_Capstone.Models
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
+        public Employer()
+        {
+            this.Developers = new HashSet<Developer>();
+            this.Jobs = new HashSet<Jobs>();
+            this.Resumes = new HashSet<Resume>();
+        }
+        public virtual ICollection<Developer> Developers { get; set; }
+        public virtual ICollection<Jobs> Jobs { get; set; }
+        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

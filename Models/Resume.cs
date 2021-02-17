@@ -8,7 +8,7 @@ namespace SOLOS_Group_Capstone.Models
 {
     public class Resume
     {
-        [key]
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Developer Specialty")]
