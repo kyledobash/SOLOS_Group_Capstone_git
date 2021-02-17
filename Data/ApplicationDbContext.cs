@@ -2,14 +2,20 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SOLOS_Group_Capstone.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+// using System.Data.Entity;
+
+
 
 namespace SOLOS_Group_Capstone.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<Employer> Employers { get; set; }
+        public DbSet<Developer> Developers { get; set; }
+        public DbSet<EmployerDeveloper> EmployerDevelopers { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -17,7 +23,9 @@ namespace SOLOS_Group_Capstone.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
             base.OnModelCreating(builder);
+
             builder.Entity<IdentityRole>()
             .HasData(
             new IdentityRole
@@ -32,7 +40,7 @@ namespace SOLOS_Group_Capstone.Data
                 Name = "Employer",
                 NormalizedName = "EMPLOYER"
             }
-            );
+            );       
         }
-    } 
+    }         
 }
