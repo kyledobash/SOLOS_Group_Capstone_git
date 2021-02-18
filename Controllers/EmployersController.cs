@@ -97,6 +97,9 @@ namespace SOLOS_Group_Capstone.Controllers
                 _context.SaveChanges();
                 // return RedirectToAction("Index", "Employer");
                 return RedirectToAction(nameof(Index));
+
+
+
             }
             catch
             {
