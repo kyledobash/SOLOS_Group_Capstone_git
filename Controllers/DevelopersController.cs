@@ -30,7 +30,6 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            // customer = _context.Customer.Include(m => m.Day);
             return View(developer);
 
         }
@@ -107,8 +106,8 @@ namespace SOLOS_Group_Capstone.Controllers
                 developerInDB.BookMarkedJobListing = developer.BookMarkedJobListing;
                 developerInDB.Pending_applications = developer.Pending_applications;
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Developer");
-                //return RedirectToAction(nameof(Index));
+                // return RedirectToAction("Index", "Developer");
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

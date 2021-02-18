@@ -24,7 +24,7 @@ namespace SOLOS_Group_Capstone.Controllers
         public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var employer = _context.Developer.Where(c => c.IdentityUserId ==
+            var employer = _context.Employer.Where(c => c.IdentityUserId ==
             userId).SingleOrDefault();
             if (employer == null)
             {
@@ -72,8 +72,8 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public IActionResult Edit(int id)        {
-            
+        public IActionResult Edit(int id)        
+        {            
             return View();
         }
 
@@ -86,7 +86,7 @@ namespace SOLOS_Group_Capstone.Controllers
         {
             try
             {
-                var employerInDB = _context.Developer.Single(m => m.Id == employer.EmpId);
+                var employerInDB = _context.Employer.Single(m => m.EmpId == employer.EmpId);
                 employerInDB.FirstName = employer.FirstName;
                 employerInDB.LastName = employer.LastName;
                 employerInDB.Email = employer.Email;
@@ -95,12 +95,12 @@ namespace SOLOS_Group_Capstone.Controllers
                 employerInDB.PhoneNumber = employer.PhoneNumber;
 
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Employer");
-                //return RedirectToAction(nameof(Index));
+                // return RedirectToAction("Index", "Employer");
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(employer);
             }
         }
 
