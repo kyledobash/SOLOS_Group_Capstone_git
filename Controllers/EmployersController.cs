@@ -72,9 +72,21 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public IActionResult Edit(int id)        
-        {            
-            return View();
+        public async Task <IActionResult> Edit(int? id)        
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var employer = await _context.Employer.FindAsync(id);
+            if (employer == null)
+            {
+                return NotFound();
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
+            return View(employer);
+
+            //return View();
         }
 
         // POST: Employers/Edit/5
@@ -97,13 +109,10 @@ namespace SOLOS_Group_Capstone.Controllers
                 _context.SaveChanges();
                 // return RedirectToAction("Index", "Employer");
                 return RedirectToAction(nameof(Index));
-
-
-
             }
             catch
             {
-                return View(employer);
+                return View();
             }
         }
 

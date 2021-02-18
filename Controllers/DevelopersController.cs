@@ -73,19 +73,21 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var developer = await _context.Developer.FindAsync(id);
+            if (developer == null)
+            {
+                return NotFound();
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", developer.IdentityUserId);
+            return View(developer);
 
-            //var developer = _context.Developer.FindAsync(id);
-            //if (developer == null)
-            //{
-            //    return NotFound();
-            //}
-            return View();
+            //return View();
         }
 
         // POST: Developers/Edit/5
