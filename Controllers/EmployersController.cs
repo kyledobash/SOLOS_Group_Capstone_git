@@ -30,7 +30,6 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            // customer = _context.Customer.Include(m => m.Day);
             return View(employer);
         }
 
@@ -47,8 +46,7 @@ namespace SOLOS_Group_Capstone.Controllers
 
         // GET: Employers/Create
         public IActionResult Create()
-        {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+        {            
             return View();
         }
 
@@ -57,7 +55,7 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("EmpId,FirstName,LastName,Email,PhoneNumber,City,State,IdentityUserId")] Employer employer)
+        public IActionResult Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State")] Employer employer)
         {
             try
             {
@@ -74,20 +72,9 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employer = await _context.Employer.FindAsync(id);
-            if (employer == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
-            return View(employer);
+        public IActionResult Edit(int id)        {
+            
+            return View();
         }
 
         // POST: Employers/Edit/5
@@ -95,7 +82,7 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmpId,FirstName,LastName,Email,PhoneNumber,City,State,IdentityUserId")] Employer employer)
+        public IActionResult Edit(Employer employer)
         {
             try
             {
@@ -105,10 +92,10 @@ namespace SOLOS_Group_Capstone.Controllers
                 employerInDB.Email = employer.Email;
                 employerInDB.City = employer.City;
                 employerInDB.State = employer.State;
-
+                employerInDB.PhoneNumber = employer.PhoneNumber;
 
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Developer");
+                return RedirectToAction("Index", "Employer");
                 //return RedirectToAction(nameof(Index));
             }
             catch
@@ -118,38 +105,13 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employer = await _context.Employer
-                .Include(e => e.IdentityUser)
-                .FirstOrDefaultAsync(m => m.EmpId == id);
-            if (employer == null)
-            {
-                return NotFound();
-            }
-
-            return View(employer);
-        }
-
-        // POST: Employers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var employer = await _context.Employer.FindAsync(id);
-            _context.Employer.Remove(employer);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EmployerExists(int id)
-        {
-            return _context.Employer.Any(e => e.EmpId == id);
+            var developer = _context.Developer.SingleOrDefault(m => m.Id == id);
+            _context.Developer.Remove(developer);
+            _context.SaveChanges();
+            var developers = _context.Developer.ToList();
+            return View("Index", developers);            
         }
     }
 }
