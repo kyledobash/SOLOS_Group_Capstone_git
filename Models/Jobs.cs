@@ -19,11 +19,11 @@ namespace SOLOS_Group_Capstone.Models
 
 
         [ForeignKey("Employer")]
-        public int EmployerId { get; set; }
-        public Employer Employer { get; set; }
+        public int? EmployerId { get; set; }
+        public Employer? Employer { get; set; }
 
         [ForeignKey("Developer")]
         public int? DevId { get; set; }
-        public Developer Developer { get; set; }
+        public Developer? Developer { get; set; }
     }
 }

@@ -30,8 +30,14 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+            getJobSearchUrl(developer.State, developer.Skill,developer); // Skill needs to be added to developer model.
             return View(developer);
-
+        }
+        public void getJobSearchUrl(string state,string skill,Developer developer)
+        {
+            developer.url = $"https://jobs.github.com/positions.json?description={skill}&location={state}";
+            _context.Update(developer); // url string in the model
+            _context.SaveChanges();
         }
 
         // GET: Developers/Details/5
@@ -159,6 +165,30 @@ namespace SOLOS_Group_Capstone.Controllers
             //{
             //    return _context.Developer.Any(e => e.Id == id);
             //}
+        }
+
+        public IActionResult CreateResume()
+        {
+            return View();
+        }
+
+        // POST: Employers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateResume(Resume resume)
+        {
+            try
+            {
+                _context.Resumes.Add(resume);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View(resume);
+            }
         }
     }
 }

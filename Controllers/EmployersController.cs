@@ -30,7 +30,12 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            return View(employer);
+            var employerJobs = _context.Jobs.Where(c => c.EmployerId == employer.EmpId).ToList();
+            if (employerJobs == null)
+            {
+                return RedirectToAction(nameof(CreateJob));
+            }
+            return View();
         }
 
         // GET: Employers/Details/5
@@ -72,7 +77,7 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public async Task <IActionResult> Edit(int? id)        
+        public async Task<IActionResult> Edit(int? id)        
         {
             if (id == null)
             {
@@ -124,6 +129,31 @@ namespace SOLOS_Group_Capstone.Controllers
             _context.SaveChanges();
             var developers = _context.Developer.ToList();
             return View("Index", developers);            
+        }
+
+
+        public IActionResult CreateJob(int id)
+        {
+            return View();
+        }
+
+        // POST: Employers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateJob(Jobs job)
+        {
+            try
+            {
+                _context.Jobs.Add(job);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));                
+            }
+            catch
+            {
+                return View(job);
+            }
         }
     }
 }

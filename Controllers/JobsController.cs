@@ -10,6 +10,7 @@ namespace SOLOS_Group_Capstone.Controllers
 {
     public class JobsController : Controller
     {
+        
         private ApplicationDbContext _context;
         public JobsController(ApplicationDbContext context)
         {
