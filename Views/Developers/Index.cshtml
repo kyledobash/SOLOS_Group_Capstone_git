@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Hi @Html.DisplayFor(model => model.FirstName)!</h1>
 
 <div>
-    <h4>Developer</h4>
+    <h4>Your Account Information</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -57,19 +57,9 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Pending_applications)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobCastId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobCastId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdentityUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdentityUser.Id)
-        </dd>
+        </dd>       
+        
+        
     </dl>
 </div>
 <div>
