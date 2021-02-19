@@ -125,11 +125,11 @@ namespace SOLOS_Group_Capstone.Controllers
         // GET: Employers/Delete/5
         public IActionResult Delete(int id)
         {
-            var developer = _context.Developer.SingleOrDefault(m => m.Id == id);
-            _context.Developer.Remove(developer);
+            var employer = _context.Employer.SingleOrDefault(m => m.EmpId == id);
+            _context.Employer.Remove(employer);
             _context.SaveChanges();
-            var developers = _context.Developer.ToList();
-            return View("Index", developers);            
+            var employers = _context.Employer.ToList();
+            return View("Index", employers);            
         } 
 
 
@@ -159,6 +159,15 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
+        }
+
+        public IActionResult DeleteJob(int id)
+        {
+            var job = _context.Jobs.SingleOrDefault(m => m.JobId == id);
+            _context.Jobs.Remove(job);
+            _context.SaveChanges();
+            var jobs = _context.Jobs.ToList();
+            return View("Index", jobs);
         }
     }
 }
