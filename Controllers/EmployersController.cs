@@ -31,6 +31,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction(nameof(Create));
             }
             var employerJobs = _context.Jobs.Where(c => c.EmployerId == employer.EmpId).ToList();
+            ViewBag.Id = employer.EmpId;
             if (employerJobs.Count == 0)
             {
                 return RedirectToAction("CreateJob", new {id = employer.EmpId});
@@ -134,8 +135,8 @@ namespace SOLOS_Group_Capstone.Controllers
 
         public IActionResult CreateJob(int id)
         {
-             // _context.Jobs.Where(c => c.EmployerId == id);
-            
+            // _context.Jobs.Where(c => c.EmployerId == id);            
+
             return View();
         }
 
@@ -149,6 +150,7 @@ namespace SOLOS_Group_Capstone.Controllers
             try
             {
                 job.EmployerId = id;
+                
                 _context.Jobs.Add(job);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));                

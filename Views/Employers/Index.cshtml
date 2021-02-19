@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="CreateJob">Create New Job</a>
+    <a asp-action="CreateJob" asp-route-id="@ViewBag.Id">Create New Job</a>
 </p>
 <table class="table">
     <thead>
@@ -29,10 +29,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Employer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Developer)
-            </th>
+            </th>            
             <th></th>
         </tr>
     </thead>
@@ -55,11 +52,8 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employer.EmpId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Developer.Id)
-            </td>
+                @Html.DisplayFor(modelItem => item.Employer.FirstName)
+            </td>           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.JobId">Details</a> |
