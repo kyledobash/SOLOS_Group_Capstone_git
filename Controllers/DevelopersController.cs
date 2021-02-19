@@ -33,16 +33,14 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction(nameof(Create));
             }
 
-            APIJobsBuilder(getJobSearchUrl(developer));
-            return View(developer);
-
             var devResume = _context.Resumes.Where(c => c.DevId == developer.Id).ToList();
             if (devResume == null)
             {
                 return RedirectToAction("CreateResume", new {id = developer.Id });
             }
-            return View(devResume);
 
+            APIJobsBuilder(getJobSearchUrl(developer));
+            return View(devResume);
         }
         [HttpGet]
         public IActionResult Get()
