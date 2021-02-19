@@ -31,11 +31,11 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction(nameof(Create));
             }
             var employerJobs = _context.Jobs.Where(c => c.EmployerId == employer.EmpId).ToList();
-            if (employerJobs == null)
+            if (employerJobs.Count == 0)
             {
-                return RedirectToAction(nameof(CreateJob));
+                return RedirectToAction("CreateJob", new {id = employer.EmpId});
             }
-            return View();
+            return View(employerJobs);
         }
 
         // GET: Employers/Details/5
@@ -129,11 +129,13 @@ namespace SOLOS_Group_Capstone.Controllers
             _context.SaveChanges();
             var developers = _context.Developer.ToList();
             return View("Index", developers);            
-        }
+        } 
 
 
         public IActionResult CreateJob(int id)
         {
+             // _context.Jobs.Where(c => c.EmployerId == id);
+            
             return View();
         }
 
@@ -142,18 +144,26 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
+        public IActionResult CreateJob(Jobs job, int id)
+        {
+            try
+            {
+                job.EmployerId = id;
+=======
         public IActionResult CreateJob(Jobs job, int employerId)
         {
             try
             {
                 job.EmployerId = employerId;
+>>>>>>> 45d05fc192d92fa140f8cce2164e053b47b86812
                 _context.Jobs.Add(job);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));                
             }
             catch
             {
-                return View(job);
+                return RedirectToAction(nameof(Index));
             }
         }
     }

@@ -28,6 +28,8 @@ namespace SOLOS_Group_Capstone.Models
         public string City { get; set; }
         public string State { get; set; }
 
+        // public List<Jobs> Jobs { get; set; }
+
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }    
