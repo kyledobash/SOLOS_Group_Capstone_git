@@ -18,17 +18,25 @@
                 <span asp-validation-for="Dev_specialty" class="text-danger"></span>
             </div>
 
-            <asp:DropDownList id="DevType"
-                              AutoPostBack="True"
-                              OnSelectedIndexChanged="Selection_Change"
-                              runat="server">
+            <select name="number">
+                <option value="">Select a number</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
 
-                <asp:ListItem Selected="True" Value="White"> White </asp:ListItem>
-                <asp:ListItem Value="Full-Stack Developer" asp-for="Dev_Specialty"> Full-Stack Developer </asp:ListItem>
-                <asp:ListItem Value="Front-End Developer" asp-for="Dev_Specialty"> Front-End Developer </asp:ListItem>
-                <asp:ListItem Value="Back-End Developer" asp-for="Dev_Specialty"> Back-End Developer </asp:ListItem>              
 
-            </asp:DropDownList>
+            @*<asp:DropDownList id="DevType"
+                          AutoPostBack="True"
+                          OnSelectedIndexChanged="Selection_Change"
+                          runat="server">
+
+            <asp:ListItem Selected="True" Value="White"> White </asp:ListItem>
+            <asp:ListItem Value="Full-Stack Developer" asp-for="Dev_Specialty"> Full-Stack Developer </asp:ListItem>
+            <asp:ListItem Value="Front-End Developer" asp-for="Dev_Specialty"> Front-End Developer </asp:ListItem>
+            <asp:ListItem Value="Back-End Developer" asp-for="Dev_Specialty"> Back-End Developer </asp:ListItem>
+
+        </asp:DropDownList>*@
 
             <div class="form-group">
                 <label asp-for="Languages" class="control-label"></label>
@@ -42,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Projects" class="control-label">Github</label>
-                <input asp-for="Projects" class="form-control" placeholder="Paste link here"/>
+                <input asp-for="Projects" class="form-control" placeholder="Paste link here" />
                 <span asp-validation-for="Projects" class="text-danger"></span>
             </div>
             <div class="form-group">
