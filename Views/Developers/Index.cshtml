@@ -6,69 +6,6 @@
 
 <h1>Index</h1>
 
-<<<<<<< HEAD
-<div>
-    <h4>Your Account Information</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BookMarkedJobListing)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BookMarkedJobListing)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pending_applications)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pending_applications)
-        </dd>
-
-    </dl>
-</div>
-        <iframe src="@Model.url" title="W3Schools Free Online Web Tutorials"></iframe>
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-=======
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -76,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Dev_specialty)
+                @Html.DisplayNameFor(model => model.Developer)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Languages)
@@ -94,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Resume_Copy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Developer)
+                @Html.DisplayNameFor(model => model)
             </th>
             <th></th>
         </tr>
@@ -132,4 +69,3 @@
 }
     </tbody>
 </table>
->>>>>>> 45d05fc192d92fa140f8cce2164e053b47b86812

@@ -103,13 +103,9 @@ namespace SOLOS_Group_Capstone.Controllers
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 developer.IdentityUserId = userId;
                 _context.Add(developer);
-<<<<<<< HEAD
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-=======
-                _context.SaveChanges();
-                return RedirectToAction(nameof(CreateResume));
->>>>>>> 45d05fc192d92fa140f8cce2164e053b47b86812
             }
             catch
             {
