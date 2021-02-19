@@ -12,8 +12,8 @@ namespace SOLOS_Group_Capstone.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Employer> Employers { get; set; }
-        public DbSet<Developer> Developers { get; set; }
+        public DbSet<Developer> Developer { get; set; }
+        public DbSet<Employer> Employer { get; set; }
         public DbSet<EmployerDeveloper> EmployerDevelopers { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Resume> Resumes { get; set; }
@@ -63,9 +63,7 @@ namespace SOLOS_Group_Capstone.Data
             //TestCreate();
         }
 
-        public DbSet<Developer> Developer { get; set; }
 
-        public DbSet<Employer> Employer { get; set; }
 
         //public void TestCreate()
         //{

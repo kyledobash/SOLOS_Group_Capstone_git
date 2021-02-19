@@ -32,15 +32,16 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-
-            var devResume = _context.Resumes.Where(c => c.DevId == developer.Id).ToList();
-            if (devResume == null)
+            
+            if (developer.HasResume == false)
             {
-                return RedirectToAction("CreateResume", new {id = developer.Id });
+                return RedirectToAction("CreateResume");
             }
 
             APIJobsBuilder(getJobSearchUrl(developer));
-            return View(devResume);
+            List<Developer> developers = new List<Developer>();
+            developers.Add(developer);
+            return View(developers);
         }
         [HttpGet]
         public IActionResult Get()
@@ -200,7 +201,7 @@ namespace SOLOS_Group_Capstone.Controllers
             //}
         }
 
-        public IActionResult CreateResume(int id)
+        public IActionResult CreateResume()
         {
             return View();
         }
@@ -210,12 +211,17 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateResume(Resume resume, int id)
+        public IActionResult CreateResume(Resume resume)
         {
             try
             {
-                resume.DevId = id;
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var developer = _context.Developer.Where(d => d.IdentityUserId == userId).SingleOrDefault();
+
+                resume.DevId = developer.Id;
+                developer.HasResume = true;
                 _context.Resumes.Add(resume);
+                _context.Developer.Update(developer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }

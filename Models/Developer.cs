@@ -48,5 +48,8 @@ namespace SOLOS_Group_Capstone.Models
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+
+        [Display(Name = "Has Resume")]
+        public bool HasResume { get; set; }
     }
 }
