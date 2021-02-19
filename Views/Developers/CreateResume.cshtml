@@ -12,20 +12,20 @@
     <div class="col-md-4">
         <form asp-action="CreateResume">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Dev_specialty" class="control-label"></label>
                 <input asp-for="Dev_specialty" class="form-control" />
                 <span asp-validation-for="Dev_specialty" class="text-danger"></span>
-            </div>
+            </div>*@
 
 
-            <div >
+            <div class="form-group">
                 <label asp-for="Dev_specialty" class="control-lable"></label>
                 <select asp-for="Dev_specialty" class="custom-select">
                     <option value="">Choose Skill Stack</option>
-                    <option value="1">Full Stack</option>
-                    <option value="2">Front End</option>
-                    <option value="2">Back End</option>
+                    <option value="FullStack">Full Stack</option>
+                    <option value="FrontEnd">Front End</option>
+                    <option value="BackEnd">Back End</option>
                 </select>
             </div>
 
