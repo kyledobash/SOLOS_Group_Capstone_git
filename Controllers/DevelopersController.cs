@@ -30,13 +30,13 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            var devResume = _context.Resumes.Where(c => c.Id == developer.Id).SingleOrDefault();
+            var devResume = _context.Resumes.Where(c => c.DevId == developer.Id).ToList();
             if (devResume == null)
             {
                 return RedirectToAction("CreateResume", new {id = developer.Id });
             }
             getJobSearchUrl(developer.State, developer.Skill,developer); // Skill needs to be added to developer model.
-            return View(developer);
+            return View(devResume);
         }
         public void getJobSearchUrl(string state,string skill,Developer developer)
         {
@@ -186,14 +186,14 @@ namespace SOLOS_Group_Capstone.Controllers
         {
             try
             {
-                resume.Id = id;
+                resume.DevId = id;
                 _context.Resumes.Add(resume);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
     }
