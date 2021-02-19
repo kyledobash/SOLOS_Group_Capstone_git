@@ -32,14 +32,23 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+
             APIJobsBuilder(getJobSearchUrl(developer));
             return View(developer);
+
+            var devResume = _context.Resumes.Where(c => c.DevId == developer.Id).ToList();
+            if (devResume == null)
+            {
+                return RedirectToAction("CreateResume", new {id = developer.Id });
+            }
+            return View(devResume);
+
         }
         [HttpGet]
         public IActionResult Get()
         {
             // Retrieve all movies from db logic
-            List<APIJobSearch> apiJobsAvailible = _context.apiJobs.ToList();
+            List<APIJobSearch> apiJobsAvailible = _context.ApiJobs.ToList();
             return Ok(apiJobsAvailible);
         }
         public Developer getJobSearchUrl(Developer developer)
@@ -94,8 +103,13 @@ namespace SOLOS_Group_Capstone.Controllers
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 developer.IdentityUserId = userId;
                 _context.Add(developer);
+<<<<<<< HEAD
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+=======
+                _context.SaveChanges();
+                return RedirectToAction(nameof(CreateResume));
+>>>>>>> 45d05fc192d92fa140f8cce2164e053b47b86812
             }
             catch
             {
@@ -192,7 +206,7 @@ namespace SOLOS_Group_Capstone.Controllers
             //}
         }
 
-        public IActionResult CreateResume()
+        public IActionResult CreateResume(int id)
         {
             return View();
         }
@@ -202,17 +216,18 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateResume(Resume resume)
+        public IActionResult CreateResume(Resume resume, int id)
         {
             try
             {
+                resume.DevId = id;
                 _context.Resumes.Add(resume);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View(resume);
+                return RedirectToAction(nameof(Index));
             }
         }
     }

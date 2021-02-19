@@ -1,11 +1,12 @@
-﻿@model SOLOS_Group_Capstone.Models.Developer
+﻿@model IEnumerable<SOLOS_Group_Capstone.Models.Resume>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Hi @Html.DisplayFor(model => model.FirstName)!</h1>
+<h1>Index</h1>
 
+<<<<<<< HEAD
 <div>
     <h4>Your Account Information</h4>
     <hr />
@@ -67,3 +68,68 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+=======
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dev_specialty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Languages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education_Certificates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Projects)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Web_Portfolio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resume_Copy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Developer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dev_specialty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Languages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education_Certificates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Projects)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Web_Portfolio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resume_Copy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Developer.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+>>>>>>> 45d05fc192d92fa140f8cce2164e053b47b86812
