@@ -142,10 +142,11 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateJob(Jobs job)
+        public IActionResult CreateJob(Jobs job, int employerId)
         {
             try
             {
+                job.EmployerId = employerId;
                 _context.Jobs.Add(job);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));                

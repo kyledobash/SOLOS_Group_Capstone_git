@@ -33,7 +33,7 @@ namespace SOLOS_Group_Capstone.Controllers
             var devResume = _context.Resumes.Where(c => c.Id == developer.Id).SingleOrDefault();
             if (devResume == null)
             {
-                return RedirectToAction(nameof(CreateResume));
+                return RedirectToAction("CreateResume", new {id = developer.Id });
             }
             getJobSearchUrl(developer.State, developer.Skill,developer); // Skill needs to be added to developer model.
             return View(developer);
@@ -172,7 +172,7 @@ namespace SOLOS_Group_Capstone.Controllers
             //}
         }
 
-        public IActionResult CreateResume()
+        public IActionResult CreateResume(int id)
         {
             return View();
         }
@@ -182,17 +182,18 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateResume(Resume resume)
+        public IActionResult CreateResume(Resume resume, int id)
         {
             try
             {
+                resume.Id = id;
                 _context.Resumes.Add(resume);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View(resume);
+                return View();
             }
         }
     }
