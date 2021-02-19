@@ -11,10 +11,20 @@ namespace SOLOS_Group_Capstone.Models
     {
         [Key]
         public int JobId { get; set; }
+
+        [Display(Name = "Job Name")]
         public string Name { get; set; }
+
+        [Display(Name = "Requirements")]
         public string Requirements { get; set; }
+
+        [Display(Name = "Descriptions")]
         public string Descriptions { get; set; }
+
+        [Display(Name = "City")]
         public string City { get; set; }
+
+        [Display(Name = "State")]
         public string State { get; set; }
 
 
