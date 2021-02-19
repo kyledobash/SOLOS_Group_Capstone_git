@@ -31,6 +31,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction(nameof(Create));
             }
             var employerJobs = _context.Jobs.Where(c => c.EmployerId == employer.EmpId).ToList();
+            ViewBag.Id = employer.EmpId;
             if (employerJobs.Count == 0)
             {
                 return RedirectToAction("CreateJob", new {id = employer.EmpId});
@@ -77,7 +78,100 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public async Task<IActionResult> Edit(int? id)        
+        public async Task<IActionResult> EditJob(int? id)        
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var job = await _context.Jobs.FindAsync(id);
+            if (job == null)
+            {
+                return NotFound();
+            }            
+            return View(job);
+        }
+
+        // POST: Employers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditJob(Jobs job)
+        {
+            try
+            {
+                var JobInDB = _context.Jobs.Single(m => m.JobId == job.JobId);
+                JobInDB.Name = job.Name;
+                JobInDB.City = job.City;
+                JobInDB.State = job.State;
+                JobInDB.Requirements = job.Requirements;
+                JobInDB.Descriptions = job.Descriptions;                
+
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Employers/Delete/5
+        public IActionResult Delete(int id)
+        {
+            var employer = _context.Employer.SingleOrDefault(m => m.EmpId == id);
+            _context.Employer.Remove(employer);
+            _context.SaveChanges();
+            var employers = _context.Employer.ToList();
+            return View("Index", employers);            
+        } 
+
+
+        public IActionResult CreateJob(int id)
+        {
+            // _context.Jobs.Where(c => c.EmployerId == id);            
+
+            return View();
+        }
+
+        // POST: Employers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateJob(Jobs job, int id)
+        {
+            try
+            {
+                job.EmployerId = id;
+                
+                _context.Jobs.Add(job);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));                
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        public IActionResult DeleteJob(int id)
+        {
+            var job = _context.Jobs.SingleOrDefault(m => m.JobId == id);
+            _context.Jobs.Remove(job);
+            _context.SaveChanges();
+            var jobs = _context.Jobs.ToList();
+            return View("Index", jobs);
+        }
+
+        public IActionResult JobDetails(int id)
+        {            
+            var jobDetails = _context.Jobs.SingleOrDefault(m => m.JobId == id);
+            return View(jobDetails);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -103,13 +197,13 @@ namespace SOLOS_Group_Capstone.Controllers
         {
             try
             {
-                var employerInDB = _context.Employer.Single(m => m.EmpId == employer.EmpId);
-                employerInDB.FirstName = employer.FirstName;
-                employerInDB.LastName = employer.LastName;
-                employerInDB.Email = employer.Email;
-                employerInDB.City = employer.City;
-                employerInDB.State = employer.State;
-                employerInDB.PhoneNumber = employer.PhoneNumber;
+                var EmployerInDB = _context.Employer.Single(m => m.EmpId == employer.EmpId);
+                EmployerInDB.FirstName = employer.FirstName;
+                EmployerInDB.LastName = employer.LastName;
+                EmployerInDB.Email = employer.Email;
+                EmployerInDB.City = employer.City;
+                EmployerInDB.State = employer.State;
+                EmployerInDB.PhoneNumber = employer.PhoneNumber;
 
                 _context.SaveChanges();
                 // return RedirectToAction("Index", "Employer");
@@ -118,44 +212,6 @@ namespace SOLOS_Group_Capstone.Controllers
             catch
             {
                 return View();
-            }
-        }
-
-        // GET: Employers/Delete/5
-        public IActionResult Delete(int id)
-        {
-            var developer = _context.Developer.SingleOrDefault(m => m.Id == id);
-            _context.Developer.Remove(developer);
-            _context.SaveChanges();
-            var developers = _context.Developer.ToList();
-            return View("Index", developers);            
-        } 
-
-
-        public IActionResult CreateJob(int id)
-        {
-             // _context.Jobs.Where(c => c.EmployerId == id);
-            
-            return View();
-        }
-
-        // POST: Employers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CreateJob(Jobs job, int id)
-        {
-            try
-            {
-                job.EmployerId = id;
-                _context.Jobs.Add(job);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));                
-            }
-            catch
-            {
-                return RedirectToAction(nameof(Index));
             }
         }
     }
