@@ -129,7 +129,7 @@ namespace SOLOS_Group_Capstone.Controllers
             _context.SaveChanges();
             var developers = _context.Developer.ToList();
             return View("Index", developers);            
-        }
+        } 
 
 
         public IActionResult CreateJob(int id)
@@ -148,8 +148,6 @@ namespace SOLOS_Group_Capstone.Controllers
         {
             try
             {
-                //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                //employer.IdentityUserId = userId;
                 job.EmployerId = id;
                 _context.Jobs.Add(job);
                 _context.SaveChanges();
