@@ -23,7 +23,7 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var developer = _context.Developer.Where(c => c.IdentityUserId ==
@@ -32,27 +32,33 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+
             
             if (developer.HasResume == false)
             {
                 return RedirectToAction("CreateResume");
             }
 
-            APIJobsBuilder(getJobSearchUrl(developer));
+            getJobSearchUrl(developer);
+            await APIJobsBuilder(developer);
+            
             List<Developer> developers = new List<Developer>();
             developers.Add(developer);
             return View(developers);
+
         }
         [HttpGet]
         public IActionResult Get()
         {
-            // Retrieve all movies from db logic
+            // Retrieve all apiJobCalls from db logic
+
             List<APIJobSearch> apiJobsAvailible = _context.ApiJobs.ToList();
             return Ok(apiJobsAvailible);
         }
         public Developer getJobSearchUrl(Developer developer)
         {
-            developer.url = $"https://jobs.github.com/positions?description={developer.Skill}&location={developer.State}"; 
+            //developer.url = $"https://jobs.github.com/positions.json?description={developer.Skill}&location={developer.State}";
+            developer.url = $"https://jobs.github.com/positions.json?description=python&location=new+york";
             _context.Update(developer); 
             _context.SaveChanges();
 
@@ -66,10 +72,11 @@ namespace SOLOS_Group_Capstone.Controllers
             if (response.IsSuccessStatusCode)
             {
                 APIJobSearch jobSearch = JsonConvert.DeserializeObject<APIJobSearch>(jsonResult);
-                _context.ApiJobs.Add(jobSearch);
-                _context.SaveChanges();
-                var results = _context.ApiJobs.Where(r => r.id == developer.Id.ToString());
-                ViewBag.Results = results;
+
+                //_context.ApiJobs.Add(jobSearch);
+                //_context.SaveChanges();
+                //var results = _context.ApiJobs.Where(r => r.id == developer.Id.ToString());
+                //ViewBag.Results = results;
             }
         }
 
