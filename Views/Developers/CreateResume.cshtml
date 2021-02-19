@@ -18,12 +18,17 @@
                 <span asp-validation-for="Dev_specialty" class="text-danger"></span>
             </div>
 
-            <select name="number">
-                <option value="">Select a number</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+
+            <div >
+                <label asp-for="Dev_specialty" class="control-lable"></label>
+                <select asp-for="Dev_specialty" class="custom-select">
+                    <option value="">Choose Skill Stack</option>
+                    <option value="1">Full Stack</option>
+                    <option value="2">Front End</option>
+                    <option value="2">Back End</option>
+                </select>
+            </div>
+
 
 
             @*<asp:DropDownList id="DevType"
