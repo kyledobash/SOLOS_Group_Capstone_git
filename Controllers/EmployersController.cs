@@ -78,21 +78,18 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public async Task<IActionResult> Edit(int? id)        
+        public async Task<IActionResult> EditJob(int? id)        
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var employer = await _context.Employer.FindAsync(id);
-            if (employer == null)
+            var job = await _context.Jobs.FindAsync(id);
+            if (job == null)
             {
                 return NotFound();
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
-            return View(employer);
-
-            //return View();
+            }            
+            return View(job);
         }
 
         // POST: Employers/Edit/5
@@ -100,20 +97,18 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Employer employer)
+        public IActionResult EditJob(Jobs job)
         {
             try
             {
-                var employerInDB = _context.Employer.Single(m => m.EmpId == employer.EmpId);
-                employerInDB.FirstName = employer.FirstName;
-                employerInDB.LastName = employer.LastName;
-                employerInDB.Email = employer.Email;
-                employerInDB.City = employer.City;
-                employerInDB.State = employer.State;
-                employerInDB.PhoneNumber = employer.PhoneNumber;
+                var JobInDB = _context.Jobs.Single(m => m.JobId == job.JobId);
+                JobInDB.Name = job.Name;
+                JobInDB.City = job.City;
+                JobInDB.State = job.State;
+                JobInDB.Requirements = job.Requirements;
+                JobInDB.Descriptions = job.Descriptions;                
 
                 _context.SaveChanges();
-                // return RedirectToAction("Index", "Employer");
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -168,6 +163,56 @@ namespace SOLOS_Group_Capstone.Controllers
             _context.SaveChanges();
             var jobs = _context.Jobs.ToList();
             return View("Index", jobs);
+        }
+
+        public IActionResult JobDetails(int id)
+        {            
+            var jobDetails = _context.Jobs.SingleOrDefault(m => m.JobId == id);
+            return View(jobDetails);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var employer = await _context.Employer.FindAsync(id);
+            if (employer == null)
+            {
+                return NotFound();
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employer.IdentityUserId);
+            return View(employer);
+
+            //return View();
+        }
+
+        // POST: Employers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Employer employer)
+        {
+            try
+            {
+                var EmployerInDB = _context.Employer.Single(m => m.EmpId == employer.EmpId);
+                EmployerInDB.FirstName = employer.FirstName;
+                EmployerInDB.LastName = employer.LastName;
+                EmployerInDB.Email = employer.Email;
+                EmployerInDB.City = employer.City;
+                EmployerInDB.State = employer.State;
+                EmployerInDB.PhoneNumber = employer.PhoneNumber;
+
+                _context.SaveChanges();
+                // return RedirectToAction("Index", "Employer");
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
