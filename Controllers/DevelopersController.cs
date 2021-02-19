@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SOLOS_Group_Capstone.Data;
 using SOLOS_Group_Capstone.Models;
 
@@ -30,14 +32,37 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            getJobSearchUrl(developer.State, developer.Skill,developer); // Skill needs to be added to developer model.
+            APIJobsBuilder(getJobSearchUrl(developer));
             return View(developer);
         }
-        public void getJobSearchUrl(string state,string skill,Developer developer)
+        [HttpGet]
+        public IActionResult Get()
         {
-            developer.url = $"https://jobs.github.com/positions.json?description={skill}&location={state}";
-            _context.Update(developer); // url string in the model
+            // Retrieve all movies from db logic
+            List<APIJobSearch> apiJobsAvailible = _context.apiJobs.ToList();
+            return Ok(apiJobsAvailible);
+        }
+        public Developer getJobSearchUrl(Developer developer)
+        {
+            developer.url = $"https://jobs.github.com/positions?description={developer.Skill}&location={developer.State}"; 
+            _context.Update(developer); 
             _context.SaveChanges();
+
+            return developer;
+        }
+        public async Task APIJobsBuilder(Developer developer)
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(developer.url);
+            string jsonResult = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                APIJobSearch jobSearch = JsonConvert.DeserializeObject<APIJobSearch>(jsonResult);
+                _context.ApiJobs.Add(jobSearch);
+                _context.SaveChanges();
+                var results = _context.ApiJobs.Where(r => r.id == developer.Id.ToString());
+                ViewBag.Results = results;
+            }
         }
 
         // GET: Developers/Details/5
@@ -62,14 +87,14 @@ namespace SOLOS_Group_Capstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId")] Developer developer)
+        public async Task <IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId,IdentityUserId,IdentityUser")] Developer developer)
         {
             try
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 developer.IdentityUserId = userId;
                 _context.Add(developer);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
