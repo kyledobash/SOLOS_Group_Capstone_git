@@ -10,6 +10,20 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="Index">
+            <div class="form-group">
+                <div class="class=" col-md-4">
+                    <p>Click browse to upload your resume</p>
+                    <input type="file" name="files" multiple />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="class=" col-md-4">
+                    <input type="submit" value="Upload" />
+                </div>
+            </div>
+        </form>
+
         <form asp-action="CreateResume">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<div class="form-group">
@@ -20,6 +34,7 @@
 
 
             <div class="form-group">
+
                 <label asp-for="Dev_specialty" class="control-lable"></label>
                 <select asp-for="Dev_specialty" class="custom-select">
                     <option value="">Choose Skill Stack</option>
@@ -32,16 +47,16 @@
 
 
             @*<asp:DropDownList id="DevType"
-                          AutoPostBack="True"
-                          OnSelectedIndexChanged="Selection_Change"
-                          runat="server">
+                              AutoPostBack="True"
+                              OnSelectedIndexChanged="Selection_Change"
+                              runat="server">
 
-            <asp:ListItem Selected="True" Value="White"> White </asp:ListItem>
-            <asp:ListItem Value="Full-Stack Developer" asp-for="Dev_Specialty"> Full-Stack Developer </asp:ListItem>
-            <asp:ListItem Value="Front-End Developer" asp-for="Dev_Specialty"> Front-End Developer </asp:ListItem>
-            <asp:ListItem Value="Back-End Developer" asp-for="Dev_Specialty"> Back-End Developer </asp:ListItem>
+                <asp:ListItem Selected="True" Value="White"> White </asp:ListItem>
+                <asp:ListItem Value="Full-Stack Developer" asp-for="Dev_Specialty"> Full-Stack Developer </asp:ListItem>
+                <asp:ListItem Value="Front-End Developer" asp-for="Dev_Specialty"> Front-End Developer </asp:ListItem>
+                <asp:ListItem Value="Back-End Developer" asp-for="Dev_Specialty"> Back-End Developer </asp:ListItem>
 
-        </asp:DropDownList>*@
+            </asp:DropDownList>*@
 
             <div class="form-group">
                 <label asp-for="Languages" class="control-label"></label>
@@ -55,23 +70,35 @@
             </div>
             <div class="form-group">
                 <label asp-for="Projects" class="control-label">Github</label>
-                <input asp-for="Projects" class="form-control" placeholder="Paste link here" />
+                <input asp-for="Projects" class="form-control" placeholder="Your GitHub link" />
                 <span asp-validation-for="Projects" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Web_Portfolio" class="control-label"></label>
-                <input asp-for="Web_Portfolio" class="form-control" />
+                <input asp-for="Web_Portfolio" class="form-control" placeholder="Your Web Portfolio link" />
                 <span asp-validation-for="Web_Portfolio" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Resume_Copy" class="control-label"></label>
-                <input asp-for="Resume_Copy" class="form-control" />
-                <span asp-validation-for="Resume_Copy" class="text-danger"></span>
-            </div>
+
+            @*<div class="form-group">*@
+
+            @*<label asp-for="Resume_Copy" class="control-label"></label>
+            <input asp-for="Resume_Copy" class="form-control" />
+            <span asp-validation-for="Resume_Copy" class="text-danger"></span>*@
+
+            @*</div>*@
+
+
+
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+
+
+
+
     </div>
 </div>
 
