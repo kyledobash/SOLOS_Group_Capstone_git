@@ -58,7 +58,8 @@ namespace SOLOS_Group_Capstone.Data
                 City = "PHX",
                 State = "AZ"
             }
-            ); ;
+            );
+            builder.Entity<APIJobSearchSaved>().HasKey(p => p.id);
         }
     }
     

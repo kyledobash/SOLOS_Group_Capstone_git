@@ -54,14 +54,14 @@ namespace SOLOS_Group_Capstone.Controllers
             return View(employerDeveloperResume); // was passing developers but the view took a list of resume model types- changed the view to take a single Model EmployerDeveloperResume --- N.E.T. --
 
         }
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    Retrieve all apiJobCalls from db logic
+        [HttpGet]
+        public IActionResult Get()
+        {
+            //Retrieve all apiJobCalls from db logic
 
-        //    List<APIJobSearchIncoming> apiJobsAvailible = _context.ApiJobs.ToList();
-        //    return Ok(apiJobsAvailible);
-        //}
+            List<APIJobSearchSaved> apiJobsAvailible = _context.ApiJobs.ToList();
+            return Ok(apiJobsAvailible);
+        }
         // GET: Developers/Details/5
         public IActionResult Details(int? id)
         {

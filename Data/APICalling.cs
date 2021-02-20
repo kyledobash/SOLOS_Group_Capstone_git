@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SOLOS_Group_Capstone.Data
@@ -22,8 +23,7 @@ namespace SOLOS_Group_Capstone.Data
                 int i = 0;
                 foreach (var item in jobSearch)
                 {
-                    
-                    savedJobs.id = jobSearch[i].id;
+                    savedJobs.id = _context.ApiJobs.Count() + 1 .ToString(); // this does work but it does not operate like you would expect. --- N.E.T. --
                     savedJobs.company = jobSearch[i].company;
                     savedJobs.company_logo = jobSearch[i].company_logo;
                     savedJobs.company_url = jobSearch[i].company_url;
@@ -34,9 +34,11 @@ namespace SOLOS_Group_Capstone.Data
                     savedJobs.title = jobSearch[i].title;
                     savedJobs.type = jobSearch[i].type;
                     i++;
+                    
                     dataBaseManager(savedJobs, _context); // stores object in apijobs table --- N.E.T. --
+
                 }
-                
+
 
             }
         }
@@ -48,7 +50,7 @@ namespace SOLOS_Group_Capstone.Data
         public Developer getJobSearchUrl(Developer developer, ApplicationDbContext _context)
         {
             //developer.url = $"https://jobs.github.com/positions.json?description={developer.Skill}&location={developer.State}";
-            developer.url = $"https://jobs.github.com/positions.json?description=python&location=new+york";
+            developer.url = $"https://jobs.github.com/positions.json?description=c#&location=newyork";
             _context.Update(developer);
             _context.SaveChanges();
 
