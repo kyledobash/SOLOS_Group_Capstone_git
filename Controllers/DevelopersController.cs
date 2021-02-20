@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +19,12 @@ namespace SOLOS_Group_Capstone.Controllers
     public class DevelopersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment _env;
 
-        public DevelopersController(ApplicationDbContext context)
+        public DevelopersController(ApplicationDbContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Developers
@@ -236,6 +241,17 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
+        }
+
+        public IActionResult SingleFile(IFormFile file)
+        {
+            var dir = _env.ContentRootPath;
+            using (var fileStream = new FileStream(Path.Combine(dir, "resume.doc"), FileMode.Create, FileAccess.Write))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            return View("CreateResume");
         }
     }
 }
