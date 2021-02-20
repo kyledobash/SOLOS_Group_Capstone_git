@@ -44,17 +44,17 @@ namespace SOLOS_Group_Capstone.Controllers
             
             List<Developer> developers = new List<Developer>();
             developers.Add(developer);
-            return View(developers);
+            return View(developer);
 
         }
         [HttpGet]
-        public IActionResult Get()
-        {
-            // Retrieve all apiJobCalls from db logic
+        //public IActionResult Get()
+        //{
+        //    // Retrieve all apiJobCalls from db logic
 
-            List<APIJobSearch> apiJobsAvailible = _context.ApiJobs.ToList();
-            return Ok(apiJobsAvailible);
-        }
+        //    List<APIJobSearch> apiJobsAvailible = _context.ApiJobs.ToList();
+        //    return Ok(apiJobsAvailible);
+        //}
         public Developer getJobSearchUrl(Developer developer)
         {
             //developer.url = $"https://jobs.github.com/positions.json?description={developer.Skill}&location={developer.State}";
@@ -71,7 +71,7 @@ namespace SOLOS_Group_Capstone.Controllers
             string jsonResult = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                APIJobSearch jobSearch = JsonConvert.DeserializeObject<APIJobSearch>(jsonResult);
+                List<APIJobSearch> jobSearch = JsonConvert.DeserializeObject<List<APIJobSearch>>(jsonResult);
 
                 //_context.ApiJobs.Add(jobSearch);
                 //_context.SaveChanges();
