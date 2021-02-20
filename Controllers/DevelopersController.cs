@@ -44,7 +44,7 @@ namespace SOLOS_Group_Capstone.Controllers
             
             List<Developer> developers = new List<Developer>();
             developers.Add(developer);
-            return View(developer);
+            return View();
 
         }
         [HttpGet]
