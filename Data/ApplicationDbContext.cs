@@ -14,7 +14,7 @@ namespace SOLOS_Group_Capstone.Data
     {
         public DbSet<Developer> Developer { get; set; }
         public DbSet<Employer> Employer { get; set; }
-        public DbSet<EmployerDeveloper> EmployerDevelopers { get; set; }
+        //public DbSet<EmployerDeveloperResume> EmployerDevelopersResume { get; set; }
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         //public DbSet<APIJobSearch> ApiJobs { get; set; }

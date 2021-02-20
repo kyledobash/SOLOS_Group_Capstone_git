@@ -25,6 +25,7 @@ namespace SOLOS_Group_Capstone.Controllers
         // GET: Developers
         public async Task <IActionResult> Index()
         {
+            
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var developer = _context.Developer.Where(c => c.IdentityUserId ==
             userId).SingleOrDefault();
@@ -44,7 +45,10 @@ namespace SOLOS_Group_Capstone.Controllers
             
             List<Developer> developers = new List<Developer>();
             developers.Add(developer);
-            return View();
+            EmployerDeveloperResume employerDeveloperResume = new EmployerDeveloperResume();
+            employerDeveloperResume.Developers = developer; // set employerDeveloperResume Developer to developer value --- N.E.T. -- 
+            employerDeveloperResume.Resume = _context.Resumes.Where(r => r.Id == developer.Id).SingleOrDefault(); // set EDR resume to same index value as developer - should be identical id's --- N.E.T. --
+            return View(employerDeveloperResume); // was passing developers but the view took a list of resume model types- changed the view to take a single Model EmployerDeveloperResume --- N.E.T. --
 
         }
         [HttpGet]
