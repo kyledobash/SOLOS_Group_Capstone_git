@@ -27,7 +27,6 @@ namespace SOLOS_Group_Capstone.Models
         [Display(Name = "State")]
         public string State { get; set; }
 
-
         [ForeignKey("Employer")]
         public int? EmployerId { get; set; }
         public Employer? Employer { get; set; }

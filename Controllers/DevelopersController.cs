@@ -25,7 +25,7 @@ namespace SOLOS_Group_Capstone.Controllers
         // GET: Developers
         public async Task <IActionResult> Index()
         {
-            
+            APICalling newCall = new APICalling(); // Created new class APICalling to handle all the calling instead of it being called on the developer controller --- N.E.T. --
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var developer = _context.Developer.Where(c => c.IdentityUserId ==
             userId).SingleOrDefault();
@@ -40,50 +40,28 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction("CreateResume");
             }
 
-            getJobSearchUrl(developer);
-            await APIJobsBuilder(developer);
+            newCall.getJobSearchUrl(developer,_context); 
+            await newCall.APIJobsBuilder(developer,_context);
             
-            List<Developer> developers = new List<Developer>();
+            List<Developer> developers = new List<Developer>(); // Is this needed anymore ??????
             developers.Add(developer);
             EmployerDeveloperResume employerDeveloperResume = new EmployerDeveloperResume();
+
             employerDeveloperResume.Developers = developer; // set employerDeveloperResume Developer to developer value --- N.E.T. -- 
+
             employerDeveloperResume.Resume = _context.Resumes.Where(r => r.Id == developer.Id).SingleOrDefault(); // set EDR resume to same index value as developer - should be identical id's --- N.E.T. --
+
             return View(employerDeveloperResume); // was passing developers but the view took a list of resume model types- changed the view to take a single Model EmployerDeveloperResume --- N.E.T. --
 
         }
-        [HttpGet]
+        //[HttpGet]
         //public IActionResult Get()
         //{
-        //    // Retrieve all apiJobCalls from db logic
+        //    Retrieve all apiJobCalls from db logic
 
-        //    List<APIJobSearch> apiJobsAvailible = _context.ApiJobs.ToList();
+        //    List<APIJobSearchIncoming> apiJobsAvailible = _context.ApiJobs.ToList();
         //    return Ok(apiJobsAvailible);
         //}
-        public Developer getJobSearchUrl(Developer developer)
-        {
-            //developer.url = $"https://jobs.github.com/positions.json?description={developer.Skill}&location={developer.State}";
-            developer.url = $"https://jobs.github.com/positions.json?description=python&location=new+york";
-            _context.Update(developer); 
-            _context.SaveChanges();
-
-            return developer;
-        }
-        public async Task APIJobsBuilder(Developer developer)
-        {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(developer.url);
-            string jsonResult = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                List<APIJobSearch> jobSearch = JsonConvert.DeserializeObject<List<APIJobSearch>>(jsonResult);
-
-                //_context.ApiJobs.Add(jobSearch);
-                //_context.SaveChanges();
-                //var results = _context.ApiJobs.Where(r => r.id == developer.Id.ToString());
-                //ViewBag.Results = results;
-            }
-        }
-
         // GET: Developers/Details/5
         public IActionResult Details(int? id)
         {

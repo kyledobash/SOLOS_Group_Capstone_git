@@ -14,10 +14,10 @@ namespace SOLOS_Group_Capstone.Data
     {
         public DbSet<Developer> Developer { get; set; }
         public DbSet<Employer> Employer { get; set; }
-        //public DbSet<EmployerDeveloperResume> EmployerDevelopersResume { get; set; }
+        
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Resume> Resumes { get; set; }
-        //public DbSet<APIJobSearch> ApiJobs { get; set; }
+        public DbSet<APIJobSearchSaved> ApiJobs { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -59,32 +59,7 @@ namespace SOLOS_Group_Capstone.Data
                 State = "AZ"
             }
             ); ;
-
-            //TestCreate();
         }
-
-
-
-        //public void TestCreate()
-        //{
-        //    Employer newEmployeer1 = new Employer();
-        //    Employer newEmployeer2 = new Employer();
-        //    Employer newEmployeer3 = new Employer();
-        //    Employer newEmployeer4 = new Employer();
-        //    Employer newEmployeer5 = new Employer();
-        //    string name = "Steve";
-        //    string name1 = "Mike";
-        //    string name2 = "Bob";
-        //    string name3 = "Jill";
-        //    string name4 = "Lexus";
-        //    newEmployeer1.FirstName = name;
-        //    newEmployeer1.FirstName = name1;
-        //    newEmployeer1.FirstName = name2;
-        //    newEmployeer1.FirstName = name3;
-        //    newEmployeer1.FirstName = name4;
-
-        //    Employer.Add(newEmployeer1);
-        //}
     }
     
 }
