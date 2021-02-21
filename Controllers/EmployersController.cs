@@ -214,5 +214,41 @@ namespace SOLOS_Group_Capstone.Controllers
                 return View();
             }
         }
+
+        //helper method to save a new review to a developer
+        public void StoreRatingAndReview(Developer developer, int rating, string review)
+        {
+            if (ValidateRating(rating))
+            {
+                Tuple<int, string> newRatingReview = new Tuple<int, string>(rating, review);
+                developer.RatingsAndReviews.Add(newRatingReview);
+            }
+        }
+
+        //calculates a developers' average rating
+        public int CalculateAverageRating(Developer developer)
+        {
+            int runningSum = 0;
+
+            foreach (Tuple<int, string> RatingAndReview in developer.RatingsAndReviews)
+            {
+                runningSum += RatingAndReview.Item1;
+            }
+
+            int average = runningSum / developer.RatingsAndReviews.Count();
+        }
+
+        //ensures rating is within correct range
+        public bool ValidateRating(int rating)
+        {
+            if (rating < 0 || rating > 5)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
