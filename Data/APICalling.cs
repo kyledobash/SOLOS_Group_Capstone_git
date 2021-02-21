@@ -49,8 +49,7 @@ namespace SOLOS_Group_Capstone.Data
         }
         public Developer getJobSearchUrl(Developer developer, ApplicationDbContext _context)
         {
-            //developer.url = $"https://jobs.github.com/positions.json?description={developer.Skill}&location={developer.State}";
-            developer.url = $"https://jobs.github.com/positions.json?description=c#&location=newyork";
+            developer.url = $"https://jobs.github.com/positions.json?&location={developer.State}";
             _context.Update(developer);
             _context.SaveChanges();
 

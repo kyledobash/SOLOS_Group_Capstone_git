@@ -83,8 +83,8 @@ namespace SOLOS_Group_Capstone.Controllers
                 _context.Add(developer);
 
                 await _context.SaveChangesAsync();
-                newCall.getJobSearchUrl(developer, _context);
-                await newCall.APIJobsBuilder(developer, _context);
+                newCall.getJobSearchUrl(developer, _context); // calling api build functions --- N.E.T. --
+                await newCall.APIJobsBuilder(developer, _context); // calling api build functions --- N.E.T. --
                 return RedirectToAction(nameof(Index));
             }
             catch
