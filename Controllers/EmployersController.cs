@@ -229,13 +229,16 @@ namespace SOLOS_Group_Capstone.Controllers
         public int CalculateAverageRating(Developer developer)
         {
             int runningSum = 0;
+            int counter = 0;
 
             foreach (Tuple<int, string> RatingAndReview in developer.RatingsAndReviews)
             {
                 runningSum += RatingAndReview.Item1;
+                counter++;
             }
 
-            int average = runningSum / developer.RatingsAndReviews.Count();
+            int average = runningSum / counter;
+            return average;
         }
 
         //ensures rating is within correct range
