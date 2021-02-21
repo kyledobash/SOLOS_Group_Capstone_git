@@ -19,6 +19,8 @@ namespace SOLOS_Group_Capstone.Data
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<APIJobSearchSaved> ApiJobs { get; set; }
 
+        public DbSet<RatingReview> RatingReviews { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

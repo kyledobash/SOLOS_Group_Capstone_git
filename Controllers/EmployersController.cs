@@ -220,26 +220,26 @@ namespace SOLOS_Group_Capstone.Controllers
         {
             if (ValidateRating(rating))
             {
-                Tuple<int, string> newRatingReview = new Tuple<int, string>(rating, review);
-                developer.RatingsAndReviews.Add(newRatingReview);
+                RatingReview newReview = new RatingReview();
+                newReview.DevId = developer.Id;
+                newReview.Rating = rating;
+                newReview.Review = review;
             }
         }
 
         //calculates a developers' average rating
-        public int CalculateAverageRating(Developer developer)
-        {
-            int runningSum = 0;
-            int counter = 0;
+        //public int CalculateAverageRating(Developer developer)
+        //{
+        //    int runningSum = 0;
 
-            foreach (Tuple<int, string> RatingAndReview in developer.RatingsAndReviews)
-            {
-                runningSum += RatingAndReview.Item1;
-                counter++;
-            }
+        //    foreach (RatingReview CurrentReview in (_context.RatingReview.Where(r => r.DevId == developer.Id).ToList()))
+        //    {
+        //        runningSum += CurrentRatingReview.Value.Item1;
+        //    }
 
-            int average = runningSum / counter;
-            return average;
-        }
+        //    int average = runningSum / developer.RatingsAndReviews.Count();
+        //    return average;
+        //}
 
         //ensures rating is within correct range
         public bool ValidateRating(int rating)

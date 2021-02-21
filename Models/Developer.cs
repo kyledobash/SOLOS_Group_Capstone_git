@@ -48,8 +48,5 @@ namespace SOLOS_Group_Capstone.Models
 
         [Display(Name = "Has Resume")]
         public bool HasResume { get; set; }
-        
-        [Display(Name = "Ratings and Reviews")]
-        public List<Tuple<int, string>> RatingsAndReviews { get; set; }
     }
 }
