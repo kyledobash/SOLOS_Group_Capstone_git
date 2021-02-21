@@ -3,16 +3,31 @@
 $(document).ready(function () {
     $.get("https://localhost:44323/api/JobSearch", function (data) {
         data.map(function (el) {
-            $("#JobsToUpdate").append(`<div>
+            $("#JobList").append(`<div>
                     <div>${JSON.stringify(el.title)}</div>
                     <div>${JSON.stringify(el.company)}</div>
                     <div>${JSON.stringify(el.type)}</div>
-                    <div>${JSON.stringify(el.description)}</div>
-                    </div>          
-                    <br>`);
+                     <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Click to Expand Job Description</button></p>
+                        <div class="collapse" id="collapseExample">
+                            <div id="jobDescription" class="card card-body"></div>
+                        </div>
+                    </div>
+                    <br>
+                    `);
         })
     })
 })
+
+$(document).ready(function () {
+    $.get("https://localhost:44323/api/JobSearch", function (data) {
+        data.map(function (el) {
+            $("#jobDescription").append(`<div>
+                ${JSON.stringify(el.description)}
+                </div>`);
+        })
+    })
+})
+
 //// Get the modal
 //var modal = document.getElementById("myModal");
 
