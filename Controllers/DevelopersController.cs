@@ -246,6 +246,8 @@ namespace SOLOS_Group_Capstone.Controllers
                 developerInDB.Bookmarks.Add(job);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
+
+                // Create a button to add jobs to the list of jobs ---J.A.P.-->
             }
             catch
             {
@@ -255,9 +257,14 @@ namespace SOLOS_Group_Capstone.Controllers
 
         public ActionResult ViewBookmarks(Developer developer)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            developer = _context.Developer.Where(d => d.IdentityUserId == userId).SingleOrDefault();
+
             var bookmarks = developer.Bookmarks;
             
             return View(bookmarks);
+            // Make a List view to show the list of bookmarks ---J.A.P.-->
+            // Create button to take you to see that list ^
         }
     }
 

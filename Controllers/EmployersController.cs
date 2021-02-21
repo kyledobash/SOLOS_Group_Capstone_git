@@ -214,17 +214,17 @@ namespace SOLOS_Group_Capstone.Controllers
                 return View();
             }
         }
-        //    public async Task<IActionResult> SearchDevs(string searchString)
-        //    {
-        //        var movies = from m in _context.Developer
-        //                     select m;
+        public async Task<IActionResult> SearchDevs(string searchString)
+        {
+            var devs = from m in _context.Developer
+                         select m;
 
-        //        if (!String.IsNullOrEmpty(searchString))
-        //        {
-        //            movies = movies.Where(s => s.Title.Contains(searchString));
-        //        }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                devs = devs.Where(s => s.Skill.Contains(searchString));
+            }
 
-        //        return View(await movies.ToListAsync());
-        //    }
-    }   //}
+            return View(await devs.ToListAsync());
+        }
+    }   
 }
