@@ -5,11 +5,9 @@
 }
 
 
-<h1>Index</h1>
+<h1>Account</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -31,9 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Resume.Web_Portfolio)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Resume_Copy)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -58,9 +54,7 @@
             <td>
                 @Html.DisplayFor(model => model.Resume.Web_Portfolio)
             </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Resume_Copy)
-            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@Model.Developers.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@Model.Developers.Id">Details</a> |
@@ -70,7 +64,7 @@
     </tbody>
 </table>
 <div id="page">
-    <h1>Recommended Jobs For @Model.Developers.FirstName</h1>
+    <h3>Recommended Jobs For @Model.Developers.FirstName</h3>
     <section>
 
         @*<button type="button" class="collapsible">Click for Job Description</button>

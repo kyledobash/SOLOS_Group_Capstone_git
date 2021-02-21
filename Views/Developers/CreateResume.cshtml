@@ -12,6 +12,7 @@
     <div class="col-md-4">
 
         <form method="post" enctype="multipart/form-data">
+            <label>Click Browse to upload a resume</label>
             <input type="file" name="file" />
             <button type="submit">Upload</button>
         </form>
@@ -47,11 +48,6 @@
                 <input asp-for="Web_Portfolio" class="form-control" placeholder="Web Portfolio link" />
                 <span asp-validation-for="Web_Portfolio" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Resume_Copy" class="control-label"></label>
-                <input asp-for="Resume_Copy" class="form-control" />
-                <span asp-validation-for="Resume_Copy" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
