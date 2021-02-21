@@ -224,22 +224,24 @@ namespace SOLOS_Group_Capstone.Controllers
                 newReview.DevId = developer.Id;
                 newReview.Rating = rating;
                 newReview.Review = review;
+
+                _context.RatingReviews.Add(newReview);
             }
         }
 
         //calculates a developers' average rating
-        //public int CalculateAverageRating(Developer developer)
-        //{
-        //    int runningSum = 0;
+        public int CalculateAverageRating(Developer developer)
+        {
+            int runningSum = 0;
 
-        //    foreach (RatingReview CurrentReview in (_context.RatingReview.Where(r => r.DevId == developer.Id).ToList()))
-        //    {
-        //        runningSum += CurrentRatingReview.Value.Item1;
-        //    }
+            foreach (RatingReview CurrentReview in (_context.RatingReviews.Where(r => r.DevId == developer.Id).ToList()))
+            {
+                runningSum += CurrentReview.Rating;
+            }
 
-        //    int average = runningSum / developer.RatingsAndReviews.Count();
-        //    return average;
-        //}
+            int average = runningSum / (_context.RatingReviews.Where(r => r.DevId == developer.Id).ToList()).Count();
+            return average;
+        }
 
         //ensures rating is within correct range
         public bool ValidateRating(int rating)
