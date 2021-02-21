@@ -12,6 +12,8 @@ namespace SOLOS_Group_Capstone.Models
     {
         [Key]
         public int EmpId { get; set; }
+        [Display(Name = "Buisness Name")]
+        public string BuisnessName {get; set;}
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
