@@ -7,73 +7,6 @@
 
 <h1>Index</h1>
 
-<<<<<<< HEAD
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Developers.FirstName) <!--Dot notation to access each object in the class, then the objects properties --- N.E.T. -->
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Developers.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Languages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Education_Certificates)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Projects)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Web_Portfolio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resume.Resume_Copy)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--Remove foreach loop due to not needing to display multiple developers on the developer home page --- N.E.T.-->
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.Developers.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Developers.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Languages)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Education_Certificates)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Projects)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Web_Portfolio)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Resume.Resume_Copy)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@Model.Developers.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@Model.Developers.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@Model.Developers.Id">Delete</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<div id="page">
-    <h1>Recommended Jobs For @Model.Developers.FirstName</h1>
-    <section>
-=======
     <p>
         <a asp-action="Create">Create New</a>
     </p>
@@ -142,40 +75,4 @@
             </tr>
         </tbody>
     </table>
-    <div id="page">
-        <h1>Featured Jobs</h1>
-        <section>
-            <table class="positionlist">
-                <tbody>
->>>>>>> SundayBranch
-
-        @*<button type="button" class="collapsible">Click for Job Description</button>
-        <div id="Description">
-            <p id="jobDescription"></p>
-        </div>*@
-
-
-        @*<table class="positionlist">
-            <tbody id="JobsToUpdate"></tbody>
-
-        </table>*@
-        <div>
-        <div id="JobList"></div>
-        <div id="Description"></div>
-        </div>
-
-
-    </section>
-</div>
-<!-- Trigger/Open The Modal -->
-<!--<button id="myBtn">Open Modal</button>-->
-<!-- The Modal -->
-<!--<div id="myModal" class="modal">-->
-
-    <!-- Modal content -->
-    <!--<div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
-    </div>
-
-</div>-->
+    
