@@ -131,6 +131,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 developerInDB.Email = developer.Email;
                 developerInDB.City = developer.City;
                 developerInDB.State = developer.State;
+                developerInDB.Skill = developer.Skill;
                 developerInDB.BookMarkedJobListing = developer.BookMarkedJobListing;
                 developerInDB.Pending_applications = developer.Pending_applications;
                 _context.SaveChanges();
@@ -226,5 +227,47 @@ namespace SOLOS_Group_Capstone.Controllers
             }
             return View("CreateResume");
         }
+
+        public IActionResult AddBookmark(int id)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBookmark(Jobs job)
+        {
+            try
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var developer = _context.Developer.Where(d => d.IdentityUserId == userId).SingleOrDefault();
+
+                var developerInDB = _context.Developer.Single(m => m.Id == developer.Id);
+                developerInDB.Bookmarks.Add(job);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+
+                // Create a button to add jobs to the list of jobs ---J.A.P.-->
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ViewBookmarks(Developer developer)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            developer = _context.Developer.Where(d => d.IdentityUserId == userId).SingleOrDefault();
+
+            var bookmarks = developer.Bookmarks;
+            
+            return View(bookmarks);
+            // Make a List view to show the list of bookmarks ---J.A.P.-->
+            // Create button to take you to see that list ^
+        }
     }
+
+    
 }

@@ -43,6 +43,12 @@ namespace SOLOS_Group_Capstone.Models
         [ForeignKey("JobCast")] //double check that this matches with jobcast junction
         public int JobCastId { get; set; } // get first value as key for jobcastId . then be able to access applicationdbcontext through LINQ . notation.
 
+        [Display(Name = "Bookmarked Jobs")]
+        public List<Jobs>  Bookmarks { get; set; }
+
+        [Display(Name = "Main Skill")]
+        public string Skill { get; set; }
+
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }

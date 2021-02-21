@@ -34,7 +34,7 @@ namespace SOLOS_Group_Capstone.Controllers
             ViewBag.Id = employer.EmpId;
             if (employerJobs.Count == 0)
             {
-                return RedirectToAction("CreateJob", new {id = employer.EmpId});
+                return RedirectToAction("CreateJob", new { id = employer.EmpId });
             }
             return View(employerJobs);
         }
@@ -46,13 +46,13 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 return NotFound();
             }
-            var employer = _context.Employer.SingleOrDefault(m => m.EmpId == id);            
+            var employer = _context.Employer.SingleOrDefault(m => m.EmpId == id);
             return View(employer);
         }
 
         // GET: Employers/Create
         public IActionResult Create()
-        {            
+        {
             return View();
         }
 
@@ -78,7 +78,7 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Employers/Edit/5
-        public async Task<IActionResult> EditJob(int? id)        
+        public async Task<IActionResult> EditJob(int? id)
         {
             if (id == null)
             {
@@ -88,7 +88,7 @@ namespace SOLOS_Group_Capstone.Controllers
             if (job == null)
             {
                 return NotFound();
-            }            
+            }
             return View(job);
         }
 
@@ -106,7 +106,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 JobInDB.City = job.City;
                 JobInDB.State = job.State;
                 JobInDB.Requirements = job.Requirements;
-                JobInDB.Descriptions = job.Descriptions;                
+                JobInDB.Descriptions = job.Descriptions;
 
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -124,8 +124,8 @@ namespace SOLOS_Group_Capstone.Controllers
             _context.Employer.Remove(employer);
             _context.SaveChanges();
             var employers = _context.Employer.ToList();
-            return View("Index", employers);            
-        } 
+            return View("Index", employers);
+        }
 
 
         public IActionResult CreateJob(int id)
@@ -145,10 +145,10 @@ namespace SOLOS_Group_Capstone.Controllers
             try
             {
                 job.EmployerId = id;
-                
+
                 _context.Jobs.Add(job);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));                
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -166,7 +166,7 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         public IActionResult JobDetails(int id)
-        {            
+        {
             var jobDetails = _context.Jobs.SingleOrDefault(m => m.JobId == id);
             return View(jobDetails);
         }
@@ -214,6 +214,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 return View();
             }
         }
+<<<<<<< HEAD
 
         //helper method to save a new review to a developer
         public void StoreRatingAndReview(Developer developer, int rating, string review)
@@ -256,4 +257,19 @@ namespace SOLOS_Group_Capstone.Controllers
             }
         }
     }
+=======
+        public async Task<IActionResult> SearchDevs(string searchString)
+        {
+            var devs = from m in _context.Developer
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                devs = devs.Where(s => s.Skill.Contains(searchString));
+            }
+
+            return View(await devs.ToListAsync());
+        }
+    }   
+>>>>>>> SundayBranch
 }
