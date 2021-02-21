@@ -131,6 +131,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 developerInDB.Email = developer.Email;
                 developerInDB.City = developer.City;
                 developerInDB.State = developer.State;
+                developerInDB.Skill = developer.Skill;
                 developerInDB.BookMarkedJobListing = developer.BookMarkedJobListing;
                 developerInDB.Pending_applications = developer.Pending_applications;
                 _context.SaveChanges();
