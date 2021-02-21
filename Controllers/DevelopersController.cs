@@ -250,7 +250,6 @@ namespace SOLOS_Group_Capstone.Controllers
             {
                 file.CopyTo(fileStream);
             }
-
             return View("CreateResume");
         }
     }
