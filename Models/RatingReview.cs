@@ -15,7 +15,6 @@ namespace SOLOS_Group_Capstone.Models
 
         [ForeignKey("Developer")]
         public int DevId { get; set; }
-        public Developer developer { get; set; }
 
         [Display(Name = "Rating")]
         public int Rating { get; set; }
