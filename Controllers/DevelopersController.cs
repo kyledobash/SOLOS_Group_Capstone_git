@@ -23,9 +23,8 @@ namespace SOLOS_Group_Capstone.Controllers
         }
 
         // GET: Developers
-        public async Task <IActionResult> Index()
+        public IActionResult Index()
         {
-            APICalling newCall = new APICalling(); // Created new class APICalling to handle all the calling instead of it being called on the developer controller --- N.E.T. --
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var developer = _context.Developer.Where(c => c.IdentityUserId ==
             userId).SingleOrDefault();
@@ -40,11 +39,9 @@ namespace SOLOS_Group_Capstone.Controllers
                 return RedirectToAction("CreateResume");
             }
 
-            newCall.getJobSearchUrl(developer,_context); 
-            await newCall.APIJobsBuilder(developer,_context);
             
             List<Developer> developers = new List<Developer>(); // Is this needed anymore ??????
-            developers.Add(developer);
+            developers.Add(developer); // Is this needed anymore also ??????
             EmployerDeveloperResume employerDeveloperResume = new EmployerDeveloperResume();
 
             employerDeveloperResume.Developers = developer; // set employerDeveloperResume Developer to developer value --- N.E.T. -- 
@@ -53,14 +50,6 @@ namespace SOLOS_Group_Capstone.Controllers
 
             return View(employerDeveloperResume); // was passing developers but the view took a list of resume model types- changed the view to take a single Model EmployerDeveloperResume --- N.E.T. --
 
-        }
-        [HttpGet]
-        public IActionResult Get()
-        {
-            //Retrieve all apiJobCalls from db logic
-
-            List<APIJobSearchSaved> apiJobsAvailible = _context.ApiJobs.ToList();
-            return Ok(apiJobsAvailible);
         }
         // GET: Developers/Details/5
         public IActionResult Details(int? id)
@@ -86,6 +75,7 @@ namespace SOLOS_Group_Capstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task <IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,City,State,BookMarkedJobListing,Pending_applications,JobCastId,IdentityUserId,IdentityUser")] Developer developer)
         {
+            APICalling newCall = new APICalling(); // Created new class APICalling to handle all the calling instead of it being called on the developer controller --- N.E.T. --
             try
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -93,6 +83,8 @@ namespace SOLOS_Group_Capstone.Controllers
                 _context.Add(developer);
 
                 await _context.SaveChangesAsync();
+                newCall.getJobSearchUrl(developer, _context);
+                await newCall.APIJobsBuilder(developer, _context);
                 return RedirectToAction(nameof(Index));
             }
             catch

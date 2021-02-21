@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "765d9233-4b4f-40e3-81b6-6103a95036a1",
+		"name": "GroupCapstone API Build",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44323/api/JobSearch",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"JobSearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Request with Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44323/api/JobSearch/191",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"JobSearch",
+						"191"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"231\",\r\n    \"type\": \"Part - Time\",\r\n    \"url\": null,\r\n    \"created_at\": \"Thu Feb 18 07:39:14 UTC 2021\",\r\n    \"company\": \"InnoGames GmbH\",\r\n    \"company_url\": \"https://www.innogames.com\",\r\n    \"location\": \"Hamburg\",\r\n    \"title\": \"Frontend Developer (Haxe) - Video Game: Forge of Empires\",\r\n    \"description\": \"<p>Our agile and cross-functional <strong>Forge of Empires</strong> team is searching for a <strong>Frontend Developer</strong>:</p>\\n<p>As a Frontend Developer, you will join a feature team of the Forge of Empires project to support growth, technical stability and longevity of our game.</p>\\n<p>Are you a talented Game Developer and passionate about online games? Live your passion for online games/Game Development and collaborate with like-minded people to provide the best user experience for our players!</p>\\n<p><strong>Your mission:</strong></p>\\n<ul>\\n<li>Contribute to the continuous development and improvement of one of our keystone games</li>\\n<li>Develop new features and improve existing game features with a strong focus on UI and UX</li>\\n<li>Participate in the whole feature development lifecycle with a commitment to high-quality results</li>\\n<li>Collaborate closely with Mobile- &amp; Backend Developers, Game Designers, and Artists to implement new game features for our browser clients</li>\\n</ul>\\n<p><strong>Your skillset:</strong></p>\\n<ul>\\n<li>Working experience in Frontend/Game Development with Haxe. ActionScript 3 or JavaScript experience is a bonus.</li>\\n<li>A right eye for details and a passion for implementing UI and UX</li>\\n<li>Well-versed in design patterns and software architecture</li>\\n<li>Experience with writing browser automation tests</li>\\n<li>Solution-oriented and efficient style of work</li>\\n<li>Team player and a good communicator with fluent English language skills</li>\\n</ul>\\n<p><em>Favorable</em></p>\\n<ul>\\n<li>Passion for online games (strategy/F2P) and knowledge of relevant game mechanics</li>\\n<li>Professional experience in the gaming industry, ideally working on comparable browser games</li>\\n<li>Theoretical understanding of Software Development, ideally based on a University degree in Computer Sciences, Business Information Systems or similar studies</li>\\n<li>Know your way around popular scripting languages (Python / Bash / Groovy)</li>\\n<li>A proactive and motivated individual with a willingness to learn</li>\\n</ul>\\n<p><strong>Your power-ups:</strong></p>\\n<ul>\\n<li>Get competitive compensation as well as a sabbatical, mobile device, contribution to your public transport ticket, and more</li>\\n<li>De-stress your private life with flexible working hours, the in-house gym, services such as a hairdresser, massage, bike inspection, and more</li>\\n<li>Participate in tons of the company's get-togethers ranging from an in-house sofa concert to a virtual wine tasting</li>\\n<li>Make the most of our excellent training and development opportunities</li>\\n<li>Feel comfortable in an atmosphere to empower creative thinking and strong results</li>\\n<li>Work in an agile multicultural team – enabling you and your team to form and actively optimize work processes</li>\\n<li>Our company language is English, and we support all our employees and their partners with optional German lessons</li>\\n<li>Receive exceptional support with your relocation to Hamburg</li>\\n<li>Shape the success story of InnoGames with our international team of driven experts in a stable growing company and award-winning employer</li>\\n</ul>\\n<p><strong>Our story:</strong></p>\\n<p>InnoGames is Germany's leading developer and publisher of mobile and online games.\\nThe company based in Hamburg is best known for Forge of Empires, Elvenar, and Tribal Wars. InnoGames' complete portfolio encompasses seven live games and several mobile titles in production.</p>\\n<p>Born as a hobby, InnoGames today has a team of 400 employees from more than 30 nations who share the passion of creating unique games that players across the globe enjoy for years.\\nTo further expand our success and to realize new projects, we are constantly looking for young talents, experienced professionals, and creative thinkers.</p>\\n<p>Excited to start your journey with InnoGames and join our dynamic team as a <strong>Frontend Developer</strong>?\\nWe look forward to receiving your application as well as your salary expectations and earliest possible starting date through our <a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">online application form</a>. <strong>Maximilian Kaeding</strong> would be happy to answer any questions you may have.</p>\\n<p><strong>Apply and #stayhome!</strong>\\nDue to the <strong>coronavirus</strong> outbreak, we switched our operations company-wide to home office and turned our hiring process into a <strong>fully virtual one</strong>.\\nWhen hiring, we are also open for our new team members starting their work remotely at the time being or adjusting contract start dates accordingly.\\nStay home and safe!</p>\\n\",\r\n    \"how_to_apply\": \"<p><a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub</a></p>\\n\",\r\n    \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcFdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0c0cdf1659e2ef3dfa4239866de1db61f1f4a2d9/logo_innogames_devlop.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44323/api/JobSearch/231",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"JobSearch",
+						"231"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1000\",\r\n    \"type\": \"Part - Time\",\r\n    \"url\": null,\r\n    \"created_at\": \"Thu Feb 18 07:39:14 UTC 2021\",\r\n    \"company\": \"InnoGames GmbH\",\r\n    \"company_url\": \"https://www.innogames.com\",\r\n    \"location\": \"Hamburg\",\r\n    \"title\": \"Frontend Developer (Haxe) - Video Game: Forge of Empires\",\r\n    \"description\": \"<p>Our agile and cross-functional <strong>Forge of Empires</strong> team is searching for a <strong>Frontend Developer</strong>:</p>\\n<p>As a Frontend Developer, you will join a feature team of the Forge of Empires project to support growth, technical stability and longevity of our game.</p>\\n<p>Are you a talented Game Developer and passionate about online games? Live your passion for online games/Game Development and collaborate with like-minded people to provide the best user experience for our players!</p>\\n<p><strong>Your mission:</strong></p>\\n<ul>\\n<li>Contribute to the continuous development and improvement of one of our keystone games</li>\\n<li>Develop new features and improve existing game features with a strong focus on UI and UX</li>\\n<li>Participate in the whole feature development lifecycle with a commitment to high-quality results</li>\\n<li>Collaborate closely with Mobile- &amp; Backend Developers, Game Designers, and Artists to implement new game features for our browser clients</li>\\n</ul>\\n<p><strong>Your skillset:</strong></p>\\n<ul>\\n<li>Working experience in Frontend/Game Development with Haxe. ActionScript 3 or JavaScript experience is a bonus.</li>\\n<li>A right eye for details and a passion for implementing UI and UX</li>\\n<li>Well-versed in design patterns and software architecture</li>\\n<li>Experience with writing browser automation tests</li>\\n<li>Solution-oriented and efficient style of work</li>\\n<li>Team player and a good communicator with fluent English language skills</li>\\n</ul>\\n<p><em>Favorable</em></p>\\n<ul>\\n<li>Passion for online games (strategy/F2P) and knowledge of relevant game mechanics</li>\\n<li>Professional experience in the gaming industry, ideally working on comparable browser games</li>\\n<li>Theoretical understanding of Software Development, ideally based on a University degree in Computer Sciences, Business Information Systems or similar studies</li>\\n<li>Know your way around popular scripting languages (Python / Bash / Groovy)</li>\\n<li>A proactive and motivated individual with a willingness to learn</li>\\n</ul>\\n<p><strong>Your power-ups:</strong></p>\\n<ul>\\n<li>Get competitive compensation as well as a sabbatical, mobile device, contribution to your public transport ticket, and more</li>\\n<li>De-stress your private life with flexible working hours, the in-house gym, services such as a hairdresser, massage, bike inspection, and more</li>\\n<li>Participate in tons of the company's get-togethers ranging from an in-house sofa concert to a virtual wine tasting</li>\\n<li>Make the most of our excellent training and development opportunities</li>\\n<li>Feel comfortable in an atmosphere to empower creative thinking and strong results</li>\\n<li>Work in an agile multicultural team – enabling you and your team to form and actively optimize work processes</li>\\n<li>Our company language is English, and we support all our employees and their partners with optional German lessons</li>\\n<li>Receive exceptional support with your relocation to Hamburg</li>\\n<li>Shape the success story of InnoGames with our international team of driven experts in a stable growing company and award-winning employer</li>\\n</ul>\\n<p><strong>Our story:</strong></p>\\n<p>InnoGames is Germany's leading developer and publisher of mobile and online games.\\nThe company based in Hamburg is best known for Forge of Empires, Elvenar, and Tribal Wars. InnoGames' complete portfolio encompasses seven live games and several mobile titles in production.</p>\\n<p>Born as a hobby, InnoGames today has a team of 400 employees from more than 30 nations who share the passion of creating unique games that players across the globe enjoy for years.\\nTo further expand our success and to realize new projects, we are constantly looking for young talents, experienced professionals, and creative thinkers.</p>\\n<p>Excited to start your journey with InnoGames and join our dynamic team as a <strong>Frontend Developer</strong>?\\nWe look forward to receiving your application as well as your salary expectations and earliest possible starting date through our <a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">online application form</a>. <strong>Maximilian Kaeding</strong> would be happy to answer any questions you may have.</p>\\n<p><strong>Apply and #stayhome!</strong>\\nDue to the <strong>coronavirus</strong> outbreak, we switched our operations company-wide to home office and turned our hiring process into a <strong>fully virtual one</strong>.\\nWhen hiring, we are also open for our new team members starting their work remotely at the time being or adjusting contract start dates accordingly.\\nStay home and safe!</p>\\n\",\r\n    \"how_to_apply\": \"<p><a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub</a></p>\\n\",\r\n    \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcFdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0c0cdf1659e2ef3dfa4239866de1db61f1f4a2d9/logo_innogames_devlop.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44323/api/JobSearch/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"JobSearch",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"231\",\r\n    \"type\": \"Part - Time\",\r\n    \"url\": null,\r\n    \"created_at\": \"Thu Feb 18 07:39:14 UTC 2021\",\r\n    \"company\": \"InnoGames GmbH\",\r\n    \"company_url\": \"https://www.innogames.com\",\r\n    \"location\": \"Hamburg\",\r\n    \"title\": \"Frontend Developer (Haxe) - Video Game: Forge of Empires\",\r\n    \"description\": \"<p>Our agile and cross-functional <strong>Forge of Empires</strong> team is searching for a <strong>Frontend Developer</strong>:</p>\\n<p>As a Frontend Developer, you will join a feature team of the Forge of Empires project to support growth, technical stability and longevity of our game.</p>\\n<p>Are you a talented Game Developer and passionate about online games? Live your passion for online games/Game Development and collaborate with like-minded people to provide the best user experience for our players!</p>\\n<p><strong>Your mission:</strong></p>\\n<ul>\\n<li>Contribute to the continuous development and improvement of one of our keystone games</li>\\n<li>Develop new features and improve existing game features with a strong focus on UI and UX</li>\\n<li>Participate in the whole feature development lifecycle with a commitment to high-quality results</li>\\n<li>Collaborate closely with Mobile- &amp; Backend Developers, Game Designers, and Artists to implement new game features for our browser clients</li>\\n</ul>\\n<p><strong>Your skillset:</strong></p>\\n<ul>\\n<li>Working experience in Frontend/Game Development with Haxe. ActionScript 3 or JavaScript experience is a bonus.</li>\\n<li>A right eye for details and a passion for implementing UI and UX</li>\\n<li>Well-versed in design patterns and software architecture</li>\\n<li>Experience with writing browser automation tests</li>\\n<li>Solution-oriented and efficient style of work</li>\\n<li>Team player and a good communicator with fluent English language skills</li>\\n</ul>\\n<p><em>Favorable</em></p>\\n<ul>\\n<li>Passion for online games (strategy/F2P) and knowledge of relevant game mechanics</li>\\n<li>Professional experience in the gaming industry, ideally working on comparable browser games</li>\\n<li>Theoretical understanding of Software Development, ideally based on a University degree in Computer Sciences, Business Information Systems or similar studies</li>\\n<li>Know your way around popular scripting languages (Python / Bash / Groovy)</li>\\n<li>A proactive and motivated individual with a willingness to learn</li>\\n</ul>\\n<p><strong>Your power-ups:</strong></p>\\n<ul>\\n<li>Get competitive compensation as well as a sabbatical, mobile device, contribution to your public transport ticket, and more</li>\\n<li>De-stress your private life with flexible working hours, the in-house gym, services such as a hairdresser, massage, bike inspection, and more</li>\\n<li>Participate in tons of the company's get-togethers ranging from an in-house sofa concert to a virtual wine tasting</li>\\n<li>Make the most of our excellent training and development opportunities</li>\\n<li>Feel comfortable in an atmosphere to empower creative thinking and strong results</li>\\n<li>Work in an agile multicultural team – enabling you and your team to form and actively optimize work processes</li>\\n<li>Our company language is English, and we support all our employees and their partners with optional German lessons</li>\\n<li>Receive exceptional support with your relocation to Hamburg</li>\\n<li>Shape the success story of InnoGames with our international team of driven experts in a stable growing company and award-winning employer</li>\\n</ul>\\n<p><strong>Our story:</strong></p>\\n<p>InnoGames is Germany's leading developer and publisher of mobile and online games.\\nThe company based in Hamburg is best known for Forge of Empires, Elvenar, and Tribal Wars. InnoGames' complete portfolio encompasses seven live games and several mobile titles in production.</p>\\n<p>Born as a hobby, InnoGames today has a team of 400 employees from more than 30 nations who share the passion of creating unique games that players across the globe enjoy for years.\\nTo further expand our success and to realize new projects, we are constantly looking for young talents, experienced professionals, and creative thinkers.</p>\\n<p>Excited to start your journey with InnoGames and join our dynamic team as a <strong>Frontend Developer</strong>?\\nWe look forward to receiving your application as well as your salary expectations and earliest possible starting date through our <a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">online application form</a>. <strong>Maximilian Kaeding</strong> would be happy to answer any questions you may have.</p>\\n<p><strong>Apply and #stayhome!</strong>\\nDue to the <strong>coronavirus</strong> outbreak, we switched our operations company-wide to home office and turned our hiring process into a <strong>fully virtual one</strong>.\\nWhen hiring, we are also open for our new team members starting their work remotely at the time being or adjusting contract start dates accordingly.\\nStay home and safe!</p>\\n\",\r\n    \"how_to_apply\": \"<p><a href=\\\"https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub\\\">https://www.innogames.com/career/detail/job/frontend-developer-haxe-video-game-forge-of-empires/?s=GitHub</a></p>\\n\",\r\n    \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcFdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0c0cdf1659e2ef3dfa4239866de1db61f1f4a2d9/logo_innogames_devlop.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44323/api/JobSearch/191",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"JobSearch",
+						"191"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

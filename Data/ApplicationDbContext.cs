@@ -59,7 +59,7 @@ namespace SOLOS_Group_Capstone.Data
                 State = "AZ"
             }
             );
-            builder.Entity<APIJobSearchSaved>().HasKey(p => p.id);
+            
         }
     }
     
