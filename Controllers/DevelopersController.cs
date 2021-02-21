@@ -226,5 +226,40 @@ namespace SOLOS_Group_Capstone.Controllers
             }
             return View("CreateResume");
         }
+
+        public IActionResult AddBookmark(int id)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBookmark(Jobs job)
+        {
+            try
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var developer = _context.Developer.Where(d => d.IdentityUserId == userId).SingleOrDefault();
+
+                var developerInDB = _context.Developer.Single(m => m.Id == developer.Id);
+                developerInDB.Bookmarks.Add(job);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ViewBookmarks(Developer developer)
+        {
+            var bookmarks = developer.Bookmarks;
+            
+            return View(bookmarks);
+        }
     }
+
+    
 }
