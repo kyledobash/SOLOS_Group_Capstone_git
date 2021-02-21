@@ -11,17 +11,17 @@ Total project points (unweighted): /60
 
 •	(7.5 points) As a developer, I want to be able to upload a copy of my resume, github projects, web portfolio and any certifications I have for development.
 
-•	(5 points) As a developer, after searching I want the ability to bookmark any job openings that interest me.
+•	JP (5 points) As a developer, after searching I want the ability to bookmark any job openings that interest me.
 
 •	(5 points) As a developer, I want to be able to view all the jobs I have already applied for
 
 • MVC	(2.5 points) As a business owner, I want to be able to create an account
 
-•	(2.5 points) As a business owner, I want to post a job/contract for developers to see.
+• MVC	(2.5 points) As a business owner, I want to post a job/contract for developers to see.
 
-•	(5 points) As a business owner, I want to filter developers based off set preferences (i.e. programming language, rating, etc.)
+•	 JP (5 points) As a business owner, I want to filter developers based off set preferences (i.e. programming language, rating, etc.)
 
-•	(5 points) As a business owner, I want to be able to leave a rating and a review for a developer.
+•	KL (5 points) As a business owner, I want to be able to leave a rating and a review for a developer.
 
 Bonus
 -	Monetization
