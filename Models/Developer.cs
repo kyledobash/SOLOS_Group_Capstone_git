@@ -30,9 +30,6 @@ namespace SOLOS_Group_Capstone.Models
         [Display(Name = "State")]
         public string State { get; set; }
 
-        [Display(Name = "Skills")]
-        public string Skill { get; set; }
-
         [Display(Name = "url")]
         public string url { get; set; }
 

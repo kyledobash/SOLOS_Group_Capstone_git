@@ -1,0 +1,28 @@
+﻿Solos User Stories
+Total project points (unweighted): /60
+
+• MVC	(5 points) As a developer, I want to be able to create an account with skills & preferences & technologies specific to me
+
+•	(10 points) As a developer, I want to be shown a list of recommended contract/job opportunities based off of my skills and preferences and technologies. (Indeed API)
+
+•	(10 points) As a developer, I want to search for a specific business owner/employer to see what contract/job opportunities they have (Indeed API).
+
+•	(2.5 points) As a developer, I want to be able to view my search results in a list.
+
+•	(7.5 points) As a developer, I want to be able to upload a copy of my resume, github projects, web portfolio and any certifications I have for development.
+
+•	JP (5 points) As a developer, after searching I want the ability to bookmark any job openings that interest me.
+
+•	(5 points) As a developer, I want to be able to view all the jobs I have already applied for
+
+• MVC	(2.5 points) As a business owner, I want to be able to create an account
+
+• MVC	(2.5 points) As a business owner, I want to post a job/contract for developers to see.
+
+•	 JP (5 points) As a business owner, I want to filter developers based off set preferences (i.e. programming language, rating, etc.)
+
+•	KL (5 points) As a business owner, I want to be able to leave a rating and a review for a developer.
+
+Bonus
+-	Monetization
+o	Ads

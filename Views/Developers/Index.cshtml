@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
+
 <h1>Index</h1>
 
 <p>
@@ -66,6 +67,39 @@
                 <a asp-action="Delete" asp-route-id="@Model.Developers.Id">Delete</a>
             </td>
         </tr>
-        }
     </tbody>
 </table>
+<div id="page">
+    <h1>Recommended Jobs For @Model.Developers.FirstName</h1>
+    <section>
+
+        @*<button type="button" class="collapsible">Click for Job Description</button>
+        <div id="Description">
+            <p id="jobDescription"></p>
+        </div>*@
+
+
+        @*<table class="positionlist">
+            <tbody id="JobsToUpdate"></tbody>
+
+        </table>*@
+        <div>
+        <div id="JobList"></div>
+        <div id="Description"></div>
+        </div>
+
+
+    </section>
+</div>
+<!-- Trigger/Open The Modal -->
+<!--<button id="myBtn">Open Modal</button>-->
+<!-- The Modal -->
+<!--<div id="myModal" class="modal">-->
+
+    <!-- Modal content -->
+    <!--<div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+
+</div>-->
