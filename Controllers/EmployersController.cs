@@ -215,18 +215,23 @@ namespace SOLOS_Group_Capstone.Controllers
             }
         }
 
-        //helper method to save a new review to a developer
-        public void StoreRatingAndReview(Developer developer, int rating, string review)
+        public IActionResult StoreRatingAndReview(int id)
         {
-            if (ValidateRating(rating))
-            {
-                RatingReview newReview = new RatingReview();
-                newReview.DevId = developer.Id;
-                newReview.Rating = rating;
-                newReview.Review = review;
+            return View();
+        }
 
-                _context.RatingReviews.Add(newReview);
+        //helper method to save a new review to a developer
+        [HttpPost]
+        public IActionResult StoreRatingAndReview(RatingReview newRatingReview, int id)
+        {
+            if (ValidateRating(newRatingReview.Rating))
+            {
+                newRatingReview.DevId = id;
+                _context.RatingReviews.Add(newRatingReview);
+                _context.SaveChanges();
+
             }
+            return RedirectToAction(nameof(SearchDevs));
         }
 
         //calculates a developers' average rating

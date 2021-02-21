@@ -1,22 +1,17 @@
 ﻿@model SOLOS_Group_Capstone.Models.RatingReview
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "StoreRatingAndReview";
 }
 
-<h1>View</h1>
+<h1></h1>
 
-<h4>RatingReview</h4>
+<h4>Leave a Review</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="View">
+        <form asp-action="StoreRatingAndReview">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DevId" class="control-label"></label>
-                <input asp-for="DevId" class="form-control" />
-                <span asp-validation-for="DevId" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
                 <input asp-for="Rating" class="form-control" />
