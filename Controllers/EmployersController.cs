@@ -214,5 +214,46 @@ namespace SOLOS_Group_Capstone.Controllers
                 return View();
             }
         }
+
+        //helper method to save a new review to a developer
+        public void StoreRatingAndReview(Developer developer, int rating, string review)
+        {
+            if (ValidateRating(rating))
+            {
+                RatingReview newReview = new RatingReview();
+                newReview.DevId = developer.Id;
+                newReview.Rating = rating;
+                newReview.Review = review;
+
+                _context.RatingReviews.Add(newReview);
+            }
+        }
+
+        //calculates a developers' average rating
+        public int CalculateAverageRating(Developer developer)
+        {
+            int runningSum = 0;
+
+            foreach (RatingReview CurrentReview in (_context.RatingReviews.Where(r => r.DevId == developer.Id).ToList()))
+            {
+                runningSum += CurrentReview.Rating;
+            }
+
+            int average = runningSum / (_context.RatingReviews.Where(r => r.DevId == developer.Id).ToList()).Count();
+            return average;
+        }
+
+        //ensures rating is within correct range
+        public bool ValidateRating(int rating)
+        {
+            if (rating < 0 || rating > 5)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
