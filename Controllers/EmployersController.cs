@@ -214,7 +214,6 @@ namespace SOLOS_Group_Capstone.Controllers
                 return View();
             }
         }
-<<<<<<< HEAD
 
         //helper method to save a new review to a developer
         public void StoreRatingAndReview(Developer developer, int rating, string review)
@@ -257,7 +256,7 @@ namespace SOLOS_Group_Capstone.Controllers
             }
         }
     }
-=======
+
         public async Task<IActionResult> SearchDevs(string searchString)
         {
             var devs = from m in _context.Developer
@@ -271,5 +270,4 @@ namespace SOLOS_Group_Capstone.Controllers
             return View(await devs.ToListAsync());
         }
     }   
->>>>>>> SundayBranch
 }
