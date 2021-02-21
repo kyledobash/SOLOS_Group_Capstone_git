@@ -255,7 +255,7 @@ namespace SOLOS_Group_Capstone.Controllers
                 return true;
             }
         }
-    }
+
 
         public async Task<IActionResult> SearchDevs(string searchString)
         {
