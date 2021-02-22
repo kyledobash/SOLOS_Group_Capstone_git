@@ -175,6 +175,130 @@ namespace SOLOS_Group_Capstone.Data
 
            }
            );
+           
+            builder.Entity<Jobs>()
+           .HasData(
+           new Jobs
+           {
+               JobId = 1,
+               EmployerId = 1,
+               Name = "KB Construction",
+               Requirements = "C#, HTML, CSS, Python, Javascript",
+               Descriptions = "Must have good Knowledge of C#",
+               City = "PHX",
+               State = "AZ",
+
+               
+
+           }
+           ,
+           new Jobs
+           {
+               JobId = 2,
+               EmployerId = 2,
+               Name = "Wells Fargo",
+               Requirements = "C#, HTML, CSS, Python, Javascript",
+               Descriptions = "Must have good Knowledge of HTML",
+               City = "PHX",
+               State = "AZ",
+
+
+           }
+           ,
+           new Jobs
+           {
+               JobId = 3,
+               EmployerId = 3,
+               Name = "Papago Golf Course",
+               Requirements = "C#, HTML, CSS, Python, Javascript",
+               Descriptions = "Must have good Knowledge of CSS",
+               City = "PHX",
+               State = "AZ",
+
+           }
+           ,
+           new Jobs
+           {
+               JobId = 4,
+               EmployerId = 4,
+               Name = "Barnes & Noble",
+               Requirements = "C#, HTML, CSS, Python, Javascript",
+               Descriptions = "Must have good Knowledge of Python",
+               City = "PHX",
+               State = "AZ",
+
+           }
+           ,
+           new Jobs
+           {
+               JobId = 5,
+               EmployerId = 5,
+               Name = "Costco",
+               Requirements = "C#, HTML, CSS, Python, Javascript",
+               Descriptions = "Must have good Knowledge of Javascript",
+               City = "PHX",
+               State = "AZ",
+
+           }
+           );
+
+            builder.Entity<Resume>()
+          .HasData(
+          new Resume
+          {
+              Id = 1,
+              Languages = "C#, HTML, CSS, Python, Javascript",
+              Education_Certificates = "dCC",
+              Projects = "Github",
+              Web_Portfolio = "",
+
+
+          }
+          ,
+          new Resume
+          {
+              Id = 2,
+              Languages = "C#, HTML, CSS, Python, Javascript",
+              Education_Certificates = "dCC",
+              Projects = "Github",
+              Web_Portfolio = "",
+
+          }
+          ,
+          new Resume
+          {
+              Id = 3,
+              Languages = "C#, HTML, CSS, Python, Javascript",
+              Education_Certificates = "dCC",
+              Projects = "Github",
+              Web_Portfolio = "",
+
+
+          }
+          ,
+          new Resume
+          {
+              Id = 4,
+              Languages = "C#, HTML, CSS, Python, Javascript",
+              Education_Certificates = "dCC",
+              Projects = "Github",
+              Web_Portfolio = "",
+
+
+          }
+          ,
+          new Resume
+          {
+              Id = 5,
+              Languages = "C#, HTML, CSS, Python, Javascript",
+              Education_Certificates = "dCC",
+              Projects = "Github",
+              Web_Portfolio = "",
+
+
+          }
+          );
+
 
 
 
